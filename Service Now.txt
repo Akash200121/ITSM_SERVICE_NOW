@@ -109,7 +109,7 @@ IN THE INSTANCE PORTAL
 --Default Date and Time Format is YYYY-MM-DD
 --The Themes can be changed during project 
 
-
+--> The Database used by ServiveNow is SQL and MariaDB
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -694,10 +694,14 @@ Work Note List - Notification will be sent to people who are added to the Work N
 
 Chapter - 7
 
-SLA - Service Level Agreement
-=============================
+SLM - SERVICE LEVEL AGREEMENT
+==============================
 
---> What is SLA?
+--> What is SLA? Understanding SLA
+--> Types of SLA -
+--> Examples
+
+
 	(A)	-> SLA - Service Level Agreement
 		-> This is the 1st type of SLM
 		-> It is between 2 Parties -
@@ -737,11 +741,215 @@ SLA - Service Level Agreement
 >> The SLA, OLA and UC comes under SLM (Service Level Management)
 
 
+--> Use of SLA - It is used for accountability for the Service Provider and if this is breached the Service Provider must pay 
 
---> Understanding SLA
+--> Use Case -  
+		Any Incident assigned to the Hardware team with Priority P2, must be resolved within 2 mins
+
+Solution -
+
+	Open New SLA --> Give the name as Hardware SLA Team --> Target - Resolution --> Change Duration --> 
+		Group select - assignment group - Hardware
+		In Start Condition - Assignment group is Hardware and Priority is P2
+		In Pause Condition - Incident State is one-of On Hold or Resolved
+		In Stop Condition  - Incident State is Closed
+
+	Create a new Incident and Assign it to Hardware Team and group, set priority to 2 and save
+	Try changing the State of Incident to On Hold or Resolved to see if the SLA is getting paused
+
+
+--> NEW SLA - 
+	1. Schedule - Working hours of the team is put under the Schedule
+				  For testing it is not possible to give Schedule Timing as the Server is based on US Time Zone
+
+	2. Start Condition - Condition in the problem statement
+
+	3. The pause condition will be paused in two situations - 1. On Hold and 2. Resolved
+			Here the Incident State is one of On Hold or resolved
+
+	4. The Stop Condition will be stopped when the state is Closed
 
 
 
---> How many types of SLA ? 
---> Examples
---> Use Case
+
+Assignment -
+
+Create OLA for the IT Department 
+Any Incident assigned to IT Department/ACME Australia and Software Group must be responded within 5 Mins and resolved within 10 mins
+
+Time - 20 mins and Marks - 20
+
+
+Solution - 
+
+	Open new SLA --> Give any name IT DEPT --> Here we have two Targets so we create two SLA - 1. Response 2. Resolution 
+	--> Set Duration accordingly --> Group Select - Software 
+
+	--> Start Condition - Company ACME Australia and Assigned Group Software 
+	--> Pause and Stop Conditon same as earlier
+
+
+	Create an Incident -
+
+	In Incident we may not be able to see the Company Box for that - 
+			-- Right Click near the Incident and then choose Configure and then Search for Company and Drag and Drop and then Save, now choose company and Assigned group accordingly
+
+
+
+
+Schedule - Working hours of the team
+
+
+HOMEWORK -
+
+Create a Schedule for 9 - 6 Weekdays excluding holidays as per Indian Calendar from August to December
+
+Solution -
+
+
+
+ITSM SUITS - 
+
+1. Incident Management
+2. Service Level Management
+3. Problem Management
+4. Knowledge Management
+5. Change Management
+6. Service Request
+7. Asset Management
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter - 8
+
+PROBLEM MANAGEMENT 
+==================
+
+When do we need a problem ticket ?
+
+	- A repeatitive issue
+	- Frequently Issue is reported or reoccured
+	- Vendor Dependency
+
+One Problem - prerequisite 
+Then based on the existing Incident
+
+
+>> TO create a Problem go to that particular Incident and right click on the top and choose Create Problem 
+
+--> Life Cycle Of a Problem 
+		- New
+		- Assess
+		- Root Cause Analysis 
+		- Fix in Progress
+		- Resolved
+		- Closed
+
+>> In the Assess - In this stage the problem is Assigned to the Problem manager
+>> If it is a PROBLEM the Problem Manager accepts or declines the Problem or terms as Duplicate
+>> Root Cause Analysis - Analysing the Root Cause of the Problem
+>> Resolve - Solving the Problem
+>> Closed - The Problem is Closed
+>> If we face any issues again then the Problem can be re-analysed
+>> Similar Incidents can be added to Child Incidents and when the Incident is closed then all the Child Incidents are closed
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter - 9
+
+KNOWLEDGE MANAGEMENT
+====================
+
+
+--> Benefit of Knowledge Management -
+		- Knowledge Article(KA) helps Resolver team to Resolve Incidents Faster
+		- KA are grouped under the Knowledge Base(KB)
+		- KA Publish / Retire needs Approval
+
+
+--> Use Case -
+	Create a Knowledge Base : Deloitte ServiceNow Training
+	Owner of this Knowledge - Uchiha Itachi
+
+	Create Knowledge Article : Deloite ITSM Training
+
+	We are going to learn : How to create and How to Use?
+
+	To create this knowledge article choose the Knowledge Base first and then and then add here the 
+
+
+Assignment =
+		Create a Knowledge article for the the Java Instation Issue - 
+		It should be placed under the IT - Java Category 
+		Create and Publish --> Test and Confirm
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter - 10
+
+CHANGE MANAGEMENT
+=================
+
+>> When there is an Infrastructure Change then Change Management comes into play 
+>> In this case we need to perform Impact Analyses
+>> Sometimes there may be a cost associated with it
+>> Need Approval as well
+
+-->> Types of Change Management -
+	(A) Normal Change - Approval Needed
+	(B) Standard Change - Pre Approved
+	(C) Emergency Change - Approval Needed
+
+--> Life Cycle of Change Request
+
+---------------------------------------------------------------------------------------       
+       Type             |       Normal        |      Emergency    |     Standard      |       
+------------------------|---------------------|-------------------|-------------------|
+	1. New              |          Y          |         Y         |        Y          |          
+	2. Assess           |          Y          |         X         |        X          |         
+	3. Authorize        |          Y          |         Y         |        X          |         
+	4. Scheduled        |          Y          |         Y         |        Y          |         
+	5. Implement        |          Y          |         Y         |        Y          |         
+	6. Review           |          Y          |         Y         |        Y          |         
+	7. Closed           |          Y          |         Y         |        Y          |         
+	8. Cancel           |          Y          |         Y         |        Y          |
+---------------------------------------------------------------------------------------
+
+
+Assess Phase - in the Normal Change is the Technical Approval, that is if the change is technically possible or not
+until the confirmation of the Assignment Group 
+CAB - Change Advisory Board 
+
+>> Steps for Normal Change -
+	- We have to enter data in the necessary fields and also select the Assignment Group 
+	- We have to give the Short description / description 
+	- Next is the Assess stage in which we have to wait for the approval 
+				- Here we need to provide the Justification, Implementation Plan, Risk and Impact analysis, Backout Plan(Rollback Options), Test Plan
+				These are mandatory fields
+	- Requesting Approval - CAB Approval
+	- Scheduled - Start and End Date and Time
+	- Implement - We have to implement and take pictures or screenshots of the change done
+	- Review - The Change will get reviewed and then it will go to the closure
+	- Close - The Update is closed and the Closure Information has to be provided 
+	- Canceled - If the Change was not successful then we can cancel the change and Rollback
+
+
+>> Emergency Change
+	- After Creating a Change Request
+	- We directly go to the Approval Stage instead of the Assess Stage
+	- After the CAB approval other stages similar to that of Normal Change
+
+
+>> Standard Change
+	- We already have few Templates
+	- For New Templates - Go to Standard Change and choose My Proposal -> New
+	- Create the template and Fill all the Change Request Values
+	- The next Stage is the approval stage 
+	- After the approval the template can be found in the New Change
+
+
+>>> Standard change means there is no business impact
+		Example - Someone asks for changing his own password, this does not affect the business 
