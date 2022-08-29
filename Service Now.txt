@@ -1,0 +1,747 @@
+24/08/2022
+----------
+
+Service Now   - Instructor - Tapas Kumar Mishra
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter 1 -
+
+BASIC TERMINOLOGIES AND INTRO TO SERVICENOW 
+===========================================
+
+
+1. Cloud - Data center - when large amount of servers are placed.
+
+2. -->Salesforce (SFDC) - CSM - Customer Service Management 
+   --> Workday - HR Management Tool
+
+3. --> Azure 
+   --> AWS
+   --> GCP 
+These are Cloud Tools
+
+4. Service Now 
+
+5. What is a CASE - Reference No - CSM
+
+6. ITIL - Information Technology Infrastructure Library
+
+> ITIL provides us guiding principles or rules for better service delivery.
+
+7. Using the ITIL concept different tools are built, they are called ITSM Tools.
+
+8. Cloud -- CSM(SFDC), HR(Workday), ITSM Tools - Service Now(Market Leader)
+
+9. Magic Quadrent, Gartnere
+
+10. On-premises(Self hosted) - Physical Servers 
+
+11. Service Now is a Cloud Based Software
+
+12. ITSM - Information Technology Service Management
+
+13. PDI(Lab) - Personal Developer Instance
+
+14. Being a cloud product we can subscribe our access to the Service Now using the platform - developer.servicenow.com
+
+15. Instance means the workspace or Lab Area 
+
+
+
+
+--> Service now is a cloud based platform 
+--> We can login to developer.servicenow.com
+--> Create our servicenow Id
+--> With Service Now ID we will get access to developer platform which is called PDA
+--> Along with this we can get access to docs - docs.servicenow.com
+--> We will also get access to community - community.servicenow.com
+--> Also to the Now Learning - nowlearning.servicenow.com
+
+
+--> Every year service now has 2 releases.
+
+1. Month of Feb and other in August (Beta) 
+2. The different releases are as per the city names across the globe.
+3. The naming convention is Alphabetical - Starting with A and now at Tokyo 
+4. The previous 2 releases will be available after the current is released.
+
+
+Future Releases - 
+
+2024 - Washington
+2023 - Utah           Vancouver
+2022 - Tokyo          Sandiego
+2021 - Rome           Quebec
+
+
+History 
+
+This is company was started with a different nae as Glide Software in the year 2006 by Fred Luddy
+In 2011 the name was released as Service Now
+In 2019 Bill McDermott joined from SAP as CEO
+High Market Share 
+
+Release alphabets
+
+A - Aspen, B- Berlin, etc...
+
+
+To change the Instance we can Release the I
+
+
+
+--> When we look at the screen after logging in we can see 3 major screens
+	- Top is the Header
+	- Left side - Filter Navigator  
+	- Center - Content Frame
+
+
+Filter Navigator is generally use to navigate between the application and the modules.
+
+On the Filter Navigator we have different Apps and it in-turn has many Modules
+
+The Content Frame is Dynamic in Nature and shows dynamic data based on the Application or Module
+
+
+IN THE INSTANCE PORTAL
+
+--Time Zone of the User Profile is very important
+--Default Date and Time Format is YYYY-MM-DD
+--The Themes can be changed during project 
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter 2 - 
+
+Service Now UI
+==============
+
+There are two types of UI - 
+
+UI15
+UI16
+
+At any point of time you can switch between UI15 and UI16
+
+- Why is it UI 15 and 16 - Service Now UI was released in 2015 - 15 , 2016 - 16 
+
+
+
+First Assignment -
+
+my.rebootclub.org
+
+
+--> Set the theme Bimley
+--> Share a SS of that in the LMS
+
+Second Assignment - 
+
+--> Switch to UI 15 and add a Quick link to Edge Area and the quick link must take you to specific App - Incident under the Self Service Application
+
+
+
+Important - Basic Configuration 
+
+--> What are the different Areas that need to be customized -
+	1. Unique User profile
+	2. Theme based on Company Logo color or their work
+	3. Give Links to access of various Sub - Departments
+	4. Contact Info
+	5. Easily accessible UI 
+
+
+Same question with right answer
+	1. Branding - Logo, Theme - colors
+	2. Platform Time or Server Time Zones - Timings - based on HQ
+	3. Date Format - 
+	4. Configuration based on Company
+
+
+First project
+
+1. Logo - 
+2. HQ - Time Zone - NY GMT - 4.00
+3. Date we want to implement - YYYY/MM/DD
+
+
+STEPS -
+
+1. Basic Config UI 16
+2. Add the logo 
+3. Page Header Caption
+4. Date and Time
+5. Colour
+6. System UI - Theme - It completly depends on the firm's choice of Colours
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter 3 - 
+
+USER ADMINISTRATION -
+===================
+
+Types of User Administartion - 
+
+1. Creating a User
+2. Types of User - EU, Fullfiller, System Admin
+3. Roles - Out-of-box Roles, Adding / Removing Roles, Creating a new role, parent/partner Role
+4. Groups (Teams)
+5. Delegate
+
+How many Users can be there -
+
+1. End Users
+2. Resolver, Helpdesk, Technician, Approver,  From Service Now point of view - Fullfiller
+3. System Administrator
+
+
+
+Life cycle of User journey -
+Access can be granted based on the Roles
+
+
+
+Admin Activity -
+
+1. First User Creation -
+	In navigation type - USERS - CHOOSE ADMINISTRATION USERS
+	Select New and typout the details
+
+Important Feature - Impersoante User - You are logging in to that persons profile (impersonate - behaving like that user) - few have been given access like Admins and few others
+=================   ================ 
+
+
+HOMEWORK
+--------
+1. Create the USER 
+2. Impersonate User
+3. Check what are the application access the User has
+
+
+- The User does not have - 
+My Approvals
+App Engine Studio
+Benchmarks
+Business Calendar
+Entity View Action Mapper
+Guided Setup ......
+
+
+The End User will have access to only self service portal.
+Impersonate User
+System Administrator
+
+
+25/08/2022
+----------
+
+
+-->VM - virtual Machine , when we dont use it for more than 10 hours the instance sleeps
+
+Tabs in the Service Now Portal of a User is called Related List
+Second one is called Roles
+The general Role is ITIL
+Adding the Role we also get many roles 
+
+1. Whenever we add a role applications related to that role are accessed by the user
+2. Different roles are present in the system - whenever a role is added access related to that application is provided
+
+Types of Roles and their uses
+
+Just like OOPS - Inheritance where Child Inherits Parents Features 
+Similarly here we have Partner Roles
+                       --------------
+
+ITIL Role can be performed by Help Desk 
+
+
+
+Assignment - 
+
+1. There is a team and it works on Assets and also works for Reporting
+
+What are the Roles avaailable in the system
+
+Answers
+
+Search for Assets
+and then for the Reporting - we choose report user
+
+
+--> The Reporting role will help us give report of our work to manager, or report 
+
+
+
+VNAVALEVENKATESHA@Deloitte.com	
+
+
+Create a role and the role name is Asset Management , they should be able to work with Assets, Incidents, Change, Problem, Configuration Items
+
+The original answer is only adding ITIL role and then Asset as all the roles are already present in ITIL
+
+At times we must use User roles as they have less accesibilty and only the important stuffs to be managed can be given to Admin
+
+Adding Approver user and Antvirus Admin
+
+--> There is a role called Impersonator which when given to a user allows to impersonate any user, but this does not mean it will allow him to impersonate the System Administrator
+
+
+--> Team  Creation - Group 
+How a team or group can be created 
+
+--> One way to give roles is to create a new role and assign to each user
+
+--> Other way is to create a new group - 
+
+	> Create the group
+	> Add members
+	> Add the role to the group 
+	> Expectation - 
+			>> Roles will be inherited to the user profile
+			>> Once a user is removed from the group Roles will be disassociated
+
+
+>>> We can create a group and add the members and also add roles for the group 
+We can as well create a Child Group
+>>> User can belong to one or more groups
+
+
+
+Assignment ---
+
+
+1. Create a New Group
+2. Company - REBOOT INC
+	CEO - ABRAHAM LINCOLN
+3. Department - Reboot Software
+	Role - ITIL
+	Members any 3
+4. Development Team - 
+	>> Testing Team
+	>> Project Management Team
+
+
+The members can also have extra roles other than the group roles
+
+--> Delegate
+    ========
+
+>> Abraham Lincoln is going on vacation and he wants to make Abel Tuter as his delegate during this period.
+
+	>>> Go to the user profile of the user Abraham Lincoln and then add the Delegate and choose what all the specific user chosen on behalf can handle.
+	>>> The timing of Delegate can be modified and then the person will not have access to the given tasks
+	>>> One or more persons can be made to delegate tasks
+
+The admin can also delegate the task of other users.
+
+Only the Admin has access to User Database
+
+
+
+--> Understand LDAP and SSO
+
+There are three other ways to create the account - 
+	1. Manual Creation
+	2. Data Load
+	3. Integration with the External Sources -
+		1. LDAP
+		2. SSO
+
+LDAP is also called Active Directory
+
+---> LDAP - Lightweight Directory Access Protocol
+
+It has a Integration with ServiceNow - and every few organizations have bidirectional 
+It is like a central repository wherein if the user is created at LDAP then it is also created and synced in SN
+
+Integration is Data Population and Authentication 
+
+That is it does not ask for password because it checks directly in the database for the user id
+
+
+
+---> SSO - Single Sign On it uses a SAML(SSO Provider) This does not need a password but checks the directory for the email you have provided
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter 4 -
+
+LIST ADMINISTRATION -
+===================
+
+1. What is a list ? - The lists of the records present in the table or under an application are listed in the form of rows and columns
+
+>> Each column is a field in the table / form
+>> Each row is a record in the table
+
+>>Sorting - We can sort the data by just clicking on the column header.
+
+>>Personalize list - Through this we can add or remove fields and also manage which format it should appear
+
+
+
+
+>>> Assignment -
+
+Show all the users who belongs to company ACME - Australia
+
+
+Wildcard - When trying to search for some keyword but you are only aware of the partial keyword, then you can use wilcard and in serviceNow the wildcard is "*" 
+
+Ex - *aus
+
+
+
+>>> Show all the users who belongs to ACME Australia or ACME North America 
+	Choose the filter option and mention the department in which we have to apply the filter, we can also save this and use it for future and also control who can view this.
+
+
+
+Assignment -
+
+Create a filter for SND Group:
+filter on execution should show all users who belongs to company ACME NA and department IT or Sales.
+Exclude Inactive Users
+
+Answer - 
+Create a filter and save it and give view access to SND group
+Before this the role of the SND Group must be given as admin
+
+
+
+>>Show matching - Will show similar kind of record 
+  -------------
+
+>>Filter Out - Will remove similar kind of records from the list view
+  ----------
+
+
+
+---> The record that have been filtered that many records will be downloaded while exporting
+
+
+
+
+Assignment -
+
+>> Exercise - Pull a report of all the users which are not VIP and belongs to company ACME China or ACME Italy
+
+This report must be in PDF
+
+>> List all the users present by company or how many users present by company - This can be done by using Group By feature
+
+>> For showing more results per page click top left three lines and then show option
+
+>>Show 30,60,150,200,250,500 results per page - 
+	Go to UI Properties and see in Comma seperated... and enter the numbers and Save it
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter 5 -
+
+SERVICENOW ARCHITECTURE
+=======================
+
+
+>> Types of Cloud Offering -
+
+	>> Three types -
+
+		1. SaaS - Software as a Service - 
+			Example  - Gmail, Office 365, FB .....
+			Limitation - You cannot customize
+			
+ 
+		2. PaaS - Platform as a Service(SaaS + customization capability) - 
+			Example  -  ServiceNow, SFDC ...
+
+
+		3. IaaS - Infrastructure as a Service - 
+			Example - AWS, Azure, GCP 
+
+
+Application Platform as a Service is a sub of PaaS 
+
+ServiceNow's System of Action - 
+
+> Cloud Service
+> Now Platform 
+> Nonstop Cloud 
+
+>> Single System of engagement for the enterprise
+
+
+
+--> Single Data Model - 
+
+--> We have 1 platform, 1 Data Model and Many Products
+--> This platform has a capability of integrating with any platform to deliver business solutions.
+
+
+
+---> Multi Instance -
+     --------------
+
+Minimum 3 instances - 
+
+	Production Instance
+	User Acceptance Testing (UAT) Instance 
+	DEV Instance 
+
+The development will happen in a two phase (i.e) Development will start at one phase and go to the other phase
+
+First will start at Dev Instance then UAT testing which will be done by the Testing Team and at the last the production Instance where it will GO Live which the end user will receive
+
+Here In UAT many different types of Testing happens like Unit Testing, Black Box, UI/UX testing, Browser Testing, and other testing as well. 
+
+--> Bug fixes can be done by Patch Fix or Hot Fix
+
+
+Architecture of the Multi Instance-
+ 
+First Layer - HARDWARE
+Second Layer 	- VM
+             	- OS
+				- Middle Ware
+	     		- Application 
+
+
+-->> In the Organization we have multiple Instance which follows the 3 Instances
+
+-->> Each Instance has its own software stack but can communicate between each other
+
+-->> Data is truly isolated(easier maintenance) which means that when performing action or updates in other instance it doesnt affect the other 2 instance
+
+-->> Architecture for that is similar to MI but the Hardware serves as a common base and rest 4 layers are split into three for the three instances
+
+
+NO DEVELOPMENT AND TESTING HAPPENS IN THE PRODUCTION INSTANCE
+=============================================================
+
+
+Instance is a URL
+
+India's nearest data center is SEOUL and Singapore
+
+New has been introduced in Banglore and Mumbai
+
+
+
+11 - Pairs of Data Center is 22 Data Center
+Main thing in cloud is Availablity
+
+They have introduced a concept called High Availablity Pair
+
+Same copies available on both the side of the DC
+If either one of it is facing issues users will be shifted to the other DC without their Knowledge and Business remains unaffected.
+
+User - Internet - Load Balancer - 2 App server - Database, this is replicated on the other DC as well
+
+
+HI PORTAL - Support page of serviceNow - hi.servicenow.com
+========= 
+
+To check the Ram Size, etc... in the serviceNow add Stats Application to bookmark
+
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter 6 - 
+
+DEVELOPMENT
+===========
+
+
+Different types of Tables both Frontend and Backend, Forms and Application
+
+--> Incident - It is a Break Fix Scenario 
+	       Something was working but suddenly stopped working and encountered an issue(not working anymore)
+	       Should be resolved quickly
+How quickly ?
+This is called SLA - Service Level Agreement 
+This quickness depends on the priority which is the deciding factor
+
+Examples - Unable to login, 100 unwanted Emails Received, My outlook does not load Emails since last 1 hour
+
+>> Whenever there is a Break Fix Scenario then a ticket is logged - 
+
+			>>> Different types of Tickets - 
+			The first four are the primary as per ITSM -
+
+					1. Incident
+					2. Change
+					3. Request
+					4. Problem
+					5. Task .....
+
+
+-->>Incident Management 
+    -------------------
+
+
+Creation of User - ID  just like creating a new user and then put password and save then give a role
+
+
+26/08/2022
+----------
+
+-->> OOTB - Out of the box - coming with the Features part of the product
+
+Admin work cannot be delegated 
+
+Work that can be done by Delegate is -
+		1. Approval
+		2. Assignment
+		3. All Notification
+		4. Meeting Invitation
+
+
+>>> To know which user has logged in - Search for User admin and selet Logged in Users module from the List
+
+---> Security Admin Role
+
+		>> This is under the elevate role in the logged in user drop down
+		>> This is only for admin
+		>> Used to work with access control
+		>> This is a temporary role - like only till the user is logged in and is actively working 
+		   Basically a "Session Specific Privilege"
+
+
+-->> Types of Scenarios when this Incidents can be used - 
+	Incident option will be available under Muliple application -
+		1. Self Service - Without service Desk user can create a ticket without approaching the Service Desk
+		2. Service Desk - 
+							More field are there to fill out 
+							Those with a Star are mandatory fields
+							The Number/Case Id cannot be changed except for the admin
+							
+		>> Priority = Impact + Urgency 
+
+		The Level of Urgency and Impact together which forms the priority is called Priority Matrix
+
+		P-1 or Priority 1 - Critical "Immediate Action"
+		P-2 or Priority 2 - High 
+		P-3 or Priority 3 - Moderate
+		P-4 or Priority 4 - Low 
+		P-5 or Priority 5 - Planning 
+
+The Caller is the End User from this we can have access to User directory
+Similarly the Assignment Group also has access to the User Groups - Admin Database and the Assigned shows the members in the group
+
+>> Incident Life cycle - 
+
+	The states that it goes Through - 
+	If the State is in "New" then it means that the case has been registered recently
+	If the State is "In Progress" that means the Incident is acknowledged (Response SLA)
+	If the State is "On Hold" that means the SLA has been stopped temporarily(paused) - In this case the person who is assigned to this case has to give a Work Note
+	If the State is "Canceled" that means the Ticket has been Canceled
+	If the State is "Resolved" that menas the Case has been solved
+
+	Any Incident that has been resolved can be reopened with a specific time frame(In Progress)
+
+
+To record what the assigned person is doing they make -
+	Work Notes 
+	Additional Comment - this additional comment is also visible to the user
+
+	To add other people who must be aware of this case then we can add them to our -
+				1. Watch List  - Will be aware of all the updates thats going on with the case
+				2. Work Notes List - Will be aware only of the Work Notes updates
+
+	When the case has been given resolved then the assigned person must update in "Resolution Information" as well as the Work Notes and the Watch List
+		- Mandatory to enter Resolution Code
+
+>> Work Note is Mandatory for all the updates done
+
+>> Crating a Priority Matrix in the Excel 
+
+>> Refresh Feature - If other user has upated some ticket then, the symbols of the areas that were changed will look like a hearbeat
+>> Connect Chat - In which anyone can chat with the online users
+
+--> Connect Chart - It serves the purpose of chatting and sharing Information
+--> Incedent History Detail - With this we can find the History of the whole Ticket, only accessible ITIL and Admin (To be checked)
+
+--> Email Configuration - 
+		Inbound Configuration
+		Outbound Configuration
+
+--> In the More options we have an option of Email where in we can mail directly about this issue to the concerned person 
+--> Features like - Email, call etc.. can be modified
+--> Only Admin and the assigned person to handle the Ticket can change the ticket Number (To be checked)
+
+
+29/08/2022
+----------
+
+--> Difference between Watch List and Work Note List
+
+Watch List - Any Update or modification happens on any field, everyone will receive this Notification who are added to the Watch List
+Work Note List - Notification will be sent to people who are added to the Work Note List whenever there is a New Work Note or Additional comment added
+
+
+--> For Priority 1 Crtitcal - the time can be 1 Hour Response and Resolution can be 1 or 2 hours, this depends on the Company
+
+--> Comapny who is seeking for Service is the company and those in the company using that service is the Customer User 
+
+------------------------------------------------------------------------------------------------------------------------------------------
+
+Chapter - 7
+
+SLA - Service Level Agreement
+=============================
+
+--> What is SLA?
+	(A)	-> SLA - Service Level Agreement
+		-> This is the 1st type of SLM
+		-> It is between 2 Parties -
+				- Customer(In Incident Field it is called - Caller)
+				- Service Provider
+		
+		-> SLA can be Configured for each - 
+				- Team(Group)
+				- Department
+				- whole Company
+		
+
+	(B) -> OLA - Operational Level Agreement
+		-> This is the 2nd type of SLM
+		-> Agreement between 2 Parties within the same organization
+		-> Example - 
+				- Sales team and Delivery Team
+				- L & D Team and the project 
+
+
+	(C) -> UC - Under Pinning Contract
+		-> This is the 3rd type of SLM
+		-> A Contract is Signed between 3 Parties
+		-> There are 3 parties involved - 
+				- Customer
+				- Service Provider
+				- Contractor
+		-> There will be an Agreement between A & B 
+				another Agreement between B & C
+				But C is bound by the agreement between A & B
+
+			There is a direct agreement between A & B and also B & C, but C is indirectly bound by this agreement
+
+
+>> SLA, OLA, UC - practically no differnce but based on the contract they have to be bifurcated
+
+>> The SLA, OLA and UC comes under SLM (Service Level Management)
+
+
+
+--> Understanding SLA
+
+
+
+--> How many types of SLA ? 
+--> Examples
+--> Use Case
