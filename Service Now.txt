@@ -500,6 +500,7 @@ First will start at Dev Instance then UAT testing which will be done by the Test
 
 Here In UAT many different types of Testing happens like Unit Testing, Black Box, UI/UX testing, Browser Testing, and other testing as well. 
 
+If there is any problem in the Production stage it again enters the Development Stage and 
 --> Bug fixes can be done by Patch Fix or Hot Fix
 
 
@@ -798,13 +799,17 @@ Solution -
 
 
 Schedule - Working hours of the team
-
+		 - Outside the Scheduled time SLA wont be attached to the ticket
 
 HOMEWORK -
 
 Create a Schedule for 9 - 6 Weekdays excluding holidays as per Indian Calendar from August to December
 
 Solution -
+
+Create a new schedule 
+Add a 
+
 
 
 
@@ -830,6 +835,7 @@ When do we need a problem ticket ?
 	- A repeatitive issue
 	- Frequently Issue is reported or reoccured
 	- Vendor Dependency
+When such kind of issues happen we need to create a problem ticket
 
 One Problem - prerequisite 
 Then based on the existing Incident
@@ -862,7 +868,6 @@ Chapter - 9
 KNOWLEDGE MANAGEMENT
 ====================
 
-
 --> Benefit of Knowledge Management -
 		- Knowledge Article(KA) helps Resolver team to Resolve Incidents Faster
 		- KA are grouped under the Knowledge Base(KB)
@@ -894,7 +899,7 @@ CHANGE MANAGEMENT
 =================
 
 >> When there is an Infrastructure Change then Change Management comes into play 
->> In this case we need to perform Impact Analyses
+>> In this case we need to perform Impact Analyses before the change is Implemented
 >> Sometimes there may be a cost associated with it
 >> Need Approval as well
 
@@ -922,6 +927,9 @@ CHANGE MANAGEMENT
 Assess Phase - in the Normal Change is the Technical Approval, that is if the change is technically possible or not
 until the confirmation of the Assignment Group 
 CAB - Change Advisory Board 
+In CAB meeting the approval of one member is enough to grant the work to be done on the next stage
+The vote of the CAB needs to be unanimous, as having this kind of roll back leads to questions on the board 
+and is a bad remark on the working of the board
 
 >> Steps for Normal Change -
 	- We have to enter data in the necessary fields and also select the Assignment Group 
@@ -953,3 +961,131 @@ CAB - Change Advisory Board
 
 >>> Standard change means there is no business impact
 		Example - Someone asks for changing his own password, this does not affect the business 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------
+30/08/2022
+----------
+
+Chapter - 11
+
+SERVICENOW DEVELOPMENT
+======================
+
+1. How to Start a Dev
+
+2. How To capture Development
+
+3. How to move the code between Instances
+
+
+>>> To capture the Development we have a concept Update set
+
+>>> 
+
+-----------------------------------------------------------------------------------
+|       Update Set                       |          Tables (Development)          |
+-----------------------------------------------------------------------------------                                                                                                                                                                
+| -Used to capture the development       | - Your Name Employee                   |
+|  activities                            |                                        |
+| - Application                          |                                        |          
+| 	- Local Update Set                   |                                        |
+| - Merge Update Set                     |                                        |
+| - Child Update Set                     |                                        |
+-----------------------------------------------------------------------------------
+
+
+>> Local Update Set  - Filter Navigator
+>> Update Set will start capturing the development activities only when it is current
+>> Switching between the different update Sets 
+		- Settings >> Developer >> Update Set >> Show Update set picker on header
+		- Changing this will add the Current Update set on the Header
+
+>> The Update Set Name and Table Name need not be the same as the update set which is in Current will capture all the Updates done 
+
+>> When you dont want the Update the Development then make the Default as the Current Update Set as it will be captured in Garbage Values
+
+>> History does not capture Development Activity but captures the Changes made to the Update Set 
+
+>> Filter Navigator ->> Tables(System Definitions)
+
+>> Changes that we can see once the Update Set is created
+		- After Entering the Label The Name will automatically be filled
+		- Any Custom Table created will have a Prefix - u_ is the Prefix for any Custom Table (Here u is user defined)
+		- Along with the Table there are 6 fields that gets created automatically
+		- In the Controls >> Access >> We already have 4 Access Controls available to us 
+				- Create
+				- Delete 
+				- Read 
+				- Write
+		- Application Access - 
+		- In control >> there is an option called Live Feed Option 
+		- Database Index is already created
+		- When Table is created and saved the Frontend and Backend (i.e Table and Form both are created)
+		- The Updates made in a Development is found in the Update Set
+
+>> In Service Now everything is Table at the Backend and Form in the Frontend
+>> We can as well delete any Updates
+
+--->> Code Movement 
+		- Download and move to another instance(from Related links find Export XML)
+		- Application Name - Retrive Update Set 
+			- Choose the File to Import and Upload
+		- Validating the Update Set - Validation is called Preview Update Set
+				- Preview
+				- Commit
+		- Go to Filter Navigation and search for the Update set
+
+
+
+
+
+-->> Steps from Capturing Updates and Code Movement
+
+1. First Create an Update List and then set it to Current Update Set - Doing this will only make the Update Set to Capture the Data
+2. Then if you are creating a Table --> Save the Table and Check the Update List to find the Recent Updates 
+3. To Export a Update Set the Status of your Update Set must be in complete
+4. Then in the recent Links we will get an Option to Export as XML
+5. If we want to Import an Update Set - Go to Retrive Update Set and Select Import option
+6. After Importing and Uploading we have to Validate - 
+		Validation is called Preview Update Set in Service now
+		We have to perform Validation to check errors 
+7. We have to Preview and then Commit 
+8. Go to Filter Nacigator and check for the Update Set you Uplaoded 
+
+
+
+
+
+
+>> In the Update Set Log we have many predefined logs
+
+>> The child class can be used in a Update Se
+>> Project - Employee Management
+	
+	- Employee pay
+	- Employee Leaves
+	- Employee Basic Information 
+	- Employee Project Info 
+
+ 
+
+ --> Merge the Update Set
+	
+	1. First Move the Child Update Set as an Individual 
+	2. Then Open the Update Set and Choose Merge Update Set and Filter out whatever you dont need and Merge the Update Set
+
+
+--> Update Source 
+	- Refer any completed Update Set present in the source instance
+	- Directly pull it from the target instance
+	- No Export / Import needed 
+	- Direct transfer from Dev to UAT
+- This is used to lower the tedious task of Import Export .. In this we create a Update Source 
+- The Update Source works like a Remote Instance
+
+1. User Creation 
+2. Give Admin Role
+3. Open Update Source and type out the URL of the DEV and the User ID and Password created by DEV
+4. The Retrive Completed Update Sets pulls the Update Sets from the Source
+5. Then we can make a Commit to store the Update Set from the Source to our Instance
