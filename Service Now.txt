@@ -1435,4 +1435,109 @@ Create a role for the Employee Application End Users -
 
 Solution - 
 
+1. Update Set
+2. Create New Roles  
 
+
+
+
+01/09/2022
+----------
+
+-->> DATA LOAD 
+
+- We are going to learn
+	- What is Load Data
+	- When it is required
+	- Steps followed during Data Load Process
+			- Data Load Template (Preparation / Validation)
+			- Import Set
+			- Transform Map
+				-Tools used during the Transform Map 
+						- (A) Auto Map
+						- (B) Mapping Assist
+	- Benefits of Data Load
+	- Use Case
+
+
+
+-->> Requirement 
+		- Load 100 users in the ServiceNow System as provided in the Template
+	
+	Pre-Requisite
+		- We need a template with 100 User Records filled
+
+
+>> Template - Is an Excel File with Field Headers
+			- Client will provide the data in template 
+			- ServiceNow Admins will use the template to load the provided data into the System
+
+
+>>> How to prepare a Template 
+	- Go to the ServiceNow User Application under User Administartion
+	- When we click on the Top -->  We have option of Import
+	- In Import we have the option to Create Excel Template
+	- To import the fields that we need we have to go to Personalize List and choose all the fields we need
+	- Then Download
+
+
+>>> Import Set - It is staging area where the loaded data is stored until it is moved to the Target Table
+
+
+--> Diagram of the Data Set 
+
+1. We primarily have the Data Set in the Local Machine
+2. Then we have the ServiceNow Cloud area
+	- Inside the Cloud Area we have : Import Set (Temporary / Staging Area), Target Table
+3. Target Table in this case is sys_user
+4. We have to map the Fields of the Import data with the Target Table - This is called Transform Map
+			- Here we either use Auto Map or Mapping Assist
+5. After this the Data is Loaded in the Target Table
+6. Validating by looking for the data in Target Table
+
+
+
+
+>>> Load Data
+	
+	- Filter Navigator --> Load Data Application 
+	- If we want we can create a Table or Use Existing Table 
+	- Advised to create a Table
+	- Then we load the data set
+	- Then we have to click Tranform Map 
+		- This is a Reusable Component
+	- In transform Map we have to add the Target Table Name 
+	- Then we have to click the Auto Map Matching Fields
+		- This will Map the Fields from the Table to the Target Table 
+	- If the Mapping is not done properly and for Manually Mapping we have to 
+		- Mapping Assist : Bring the Unmatched field from Left and Map with the field on the right 
+		- The Mapping will appear in the middle
+	- Now hit the Transform 
+	- One Table can have many Transform Maps
+--> Data is now loaded Successfully 
+-- If we need to check the Tranform History, Import Log and Import Set for this Data Load 
+
+>> If we hit the Submit button before we Auto Map - In filter Navigator - Search Transform Map and choose Administartion - Transform Maps
+
+
+
+--->> Please Update the existing records and create those records which does not exist with reference to the provided data
+
+Solution -
+
+Similar to last Steps do till Mapping Assist and Save
+Important -  
+
+>>> Coalesce - Defining the Unique identifier
+			   Example - User id is defined as Coalesce that means system is instructed to find and update the record if it exists
+			   			 If it does not exist then system creates a new record
+			There can be More than one Coalesce
+
+			Then Transform 
+				- In Transform we have the Updated as well as the New one 
+				- Choose the NEW One and hit Transform 
+			
+	Validate using sys_user Table 
+
+
+** Difference between Update Set vs Import Set - 
