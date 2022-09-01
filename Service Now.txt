@@ -886,7 +886,7 @@ KNOWLEDGE MANAGEMENT
 
 
 Assignment =
-		Create a Knowledge article for the the Java Instation Issue - 
+		Create a Knowledge article for the the Java Installation Issue - 
 		It should be placed under the IT - Java Category 
 		Create and Publish --> Test and Confirm
 
@@ -1051,7 +1051,7 @@ SERVICENOW DEVELOPMENT
 		Validation is called Preview Update Set in Service now
 		We have to perform Validation to check errors 
 7. We have to Preview and then Commit 
-8. Go to Filter Nacigator and check for the Update Set you Uplaoded 
+8. Go to Filter Navigator and check for the Update Set you Uploaded
 
 
 
@@ -1089,3 +1089,350 @@ SERVICENOW DEVELOPMENT
 3. Open Update Source and type out the URL of the DEV and the User ID and Password created by DEV
 4. The Retrive Completed Update Sets pulls the Update Sets from the Source
 5. Then we can make a Commit to store the Update Set from the Source to our Instance
+
+
+
+-->> Table -
+		- Open the latest created Table
+		- We can add new rows
+		- The version under use comes with 52 Data Types
+		- In the latest Tokyo Version there are 53 Data Types
+	- Creating a new Row using - New button 
+		- First Choose the Type like - Date, String etc....
+				- Here Reference can also be used 
+					For Example - The company details that comes as OOTB is a reference table to us as we have not created it
+		- Then Save it and then give the column name 
+		- Update the Table
+		- The User Created Row comes with a Red Cross
+
+	- Once we create a New Table and save it we cannot modify it
+
+Assignment - 
+
+User - David Loo 
+He should be able to -
+						Read, Write, Modify, Delete, the records present in the employee application 
+
+Solution - 
+	Add the Role - U_ to the User
+
+
+
+-->> To create a role that is not system Defined we have to have an application 
+-->> The Application once developed comes along with a Role
+
+-->> Global Scope 
+
+>>> What are the other ways of creating the Table
+
+---> Auto Generate Employee number using Employee Details Table
+	1. Go to Table 
+	2. Controls -->  Auto Number 
+	3. Update 
+
+	* Here the Records created earlier will not have a Employee Number
+	That is the Auto Generation is effective since the Update
+
+--> Sys Id - Unique identifier for Records in ServiceNow (The way ServiceNow stores Record)
+
+		- In short Aadhar Card of ServiceNow
+		- Every record in ServiceNow has a Unique identifier called SYS - ID 
+		- It is 32 Character Long Alpha Numeric Number
+
+- This SYS ID remains as a constant in any given situation
+
+How to find the SYS ID for any Record ? -
+		- In our Application change User Personalized List and add all the fields necessary
+		- Click the User 
+		- On the Top right click and copy Sys ID and paste in notepad to see the Employee Id
+
+
+
+Assignments -
+
+1. Create Application to store books and its issue and returned date inside the Library Management System Software
+
+	This Library Management System is managed by the Library Staff
+	Here are the Staffs who will do the Book Keeping
+			- Fred Luddy
+			- Abraham Lincoln
+			- Abel Tuter
+	
+Solution - 
+
+	1. Create Update Set
+	2. Create an Application - Library Management System
+	3. Assign Roles to Librarians
+	4. Test
+
+2. We have a project 
+	- Library Management System
+	- Project Lead Abel Tuter has to divide following modules work between different developers
+      so that all development work can be moved together
+
+	Module
+	- Books        -----> Librarian module
+	- Students     |
+	- Staff -------
+	               |
+				   -----> Helpers Module
+	- Purchases
+
+Solution - 
+	1. In the Update Set Created Earlier - Create Child Set
+	2. Under the Child Set - Staff - Create Librarian Module, and Helpers Module as Child Set
+	3. Make Abel Tuter as Admin for this 
+
+
+	
+31/08/2022
+----------
+
+-->> EXTENDED TABLE
+	 --------------
+
+Extensible - Creating a new table with use of the current table
+			 The New Table will contain the fields of the First Table and will also have additional fields 
+
+What are we going to learn ?
+
+	- How to create a table by extending an existing table
+	- How to add a new module under an existing application
+		Example - Employee Pay module will be available under the Employee Application
+	- How to manage the roles created along with the new module
+	
+
+Excercise - 
+
+Extended Table Name : Employee Pay (2nd Table) which will be Extended from Employee Table
+
+Solution -
+
+1. Change the Update Set to Employee Pay
+2. Go to the Emp Table Created and in controls check Extensible
+3. Create New table and select the extends table as Employee
+4. Add module to menu - select the Employee Application
+5. Save the Table 
+		- We observe that a new role was created and also the fields of previous Table gets added
+6. Now opening the newly created application we can see the fields of the previous Table
+
+
+Benifit of Extending the Table -
+	- This ensures Data Normalization 
+	- Normalization : Dont store the same data in multiple Table
+					- To avoid Data Redundancy
+
+
+- Point to remember 
+	- Structure of the Table is copied not the Data
+
+
+Assignment -
+
+Compare the First Table and the Extended Table we have created 
+Note down the differences found
+
+Solution - 
+
+- The Database Indexes are matched to the Main Table 
+- There are Two Sys Id created 
+- Every Table has its own Auto Number
+	- Auto Number is turned Off
+	- Example - Incident, Change, 
+- Can we delete the previous table columns ?
+	- If the fields are used as a reference at some other place then the system wont allow us to delete 
+	- In general we must not delete the data
+
+
+Can we have Two Sys ID ?
+		- Create a New Record in Employee Pay
+		- Copy the SYS_ID
+		- Go to Main Table and Select and Copy the SYS_ID for the Same Record 
+
+	- Here we see that The SYS_ID are same which means that 
+
+
+Assignment -
+
+Find the Source Table for the following applications 
+	- Incident  -> Task
+	- Change	-> Task
+	- Problem 	-> Task
+	- Request	-> Task
+Solution - 
+1. Search the name of the application in the Label
+2. All the Applications will have the same Extends Table as Task
+
+
+--->>> Form Design 
+	   -----------
+
+
+--->> How to design the UI(Form)
+--->> We have created a table
+		- After creating a table we were able to find 
+			- Application 
+			- Module
+		- The form was created automatically
+
+-->> To design Form 
+	- Go to the particular TABLE and click on Design Form
+	- The primary thing we find after going in the link is 
+		- It is an interface using which we can add new fields
+		- Select appropriate field type to be used
+		- Example : Date Field, String Field, Reference, Choice ....
+	- It also provides us the option to create Layout and place the fields
+	- It also provides us the option to create different Form Section 
+	- Provides option to add Section Headers
+
+
+Excercise -
+
+- Design the Employee Pay Form 
+
+- Design : 		
+
+
+ _______________________________                                                     ______________________________________
+|________Employee ID____________|                                                   |______________Joining Date____________|
+
+ _______________________________                                                     _____________________________________
+|________Employee Name__________|                                                   |_____________Last Login Date__________|
+
+ _______________________________                                                     ______________________________________
+|__________Company______________|                                                   |_____________Employee Type____________|
+																									Permanent
+																									Contractual
+
+
+													Bank Account Information														
+ _______________________________                                                     _______________________________________
+|_________Account No____________|                                                   |_______________IFSC Code_______________|
+
+ _______________________________                                                     _______________________________________
+|_________Branch _______________|								                    |______________Account Type_____________|
+
+
+Solution -
+
+- Open the Design form 
+- Change the number of columns we need and accordingly drage and drop the Fields in the manner we want
+- If we want to add a new section use the add button on top left
+- When we want to add a new field, choose from field type and drag and drop
+	- Whenever we are Changing the name while creating new field Type, the Backend value must be as per the Standard naming convention followed
+	- Must be renamed before the form is saved, it cannot be renamed after the form is saved 
+	- The prefix used must be u_ <field name>
+	- Best Practise is to maintain lower case
+
+- For the Branch - we add The reference field
+							- The table for Location is found in cmn_location
+
+- The Backend and Frontend are inter communicating wth each other
+		- While creating the Frontend the Backend(Table Columns) are automatically updated
+
+--> If the Sections are appearing in Tabbed Format 
+		- Go to System Setting on top left
+		- Forms --> Disable Tabbed Forms
+
+
+Assignment -
+
+Add following fields in the following Form 
+	- Add Employee Image
+	- Salary should be paid in Dollar
+	- Salary Payment date should be entered
+
+Solution -
+
+- Add the Employee Image with Attachment Type 
+- Salary must be in Currency 
+	- We cannot use FX Currency - Forex Currency used for conversion
+	- We must not add Price as it describes a selling Price
+- Salary Payment Date - Use Due Date
+
+
+--->> Base Table
+	  ----------
+
+>> What is a Base Table ?
+>> What are the Base Table in SERVICENOW ?
+>> How the Base Tables is being Extended ?
+
+>> How many Base Table in ServiceNow ? (Most Frequently Asked Certification Question)
+	- There are Two Base Table in ServiceNow
+		- Task
+		- CMDB
+
+>> The Task Table has all the common Data required for other fields like 
+		- Change
+		- Incident
+		- Problem
+		- Request ....
+	Further the Task Table is Extended and new fields are added wherever required
+	Task Table is the Parent Table
+	This helps in Normalization
+
+
+Assignment - (Very Important and Useful for ServiceNow throuhout career in ServiceNow)
+
+	- Find the Table Name for the Following Forms
+		- User
+		- Group 
+		- Role
+		- Group Membership
+
+Solution -
+		  				  Label 	  			Name					Extends Table
+
+1. User 				- User					sys_user				(empty)
+2. Group 				- Group					sys_user_group			(empty)
+3. Role 				- Role					sys_user_role			Application File
+4. Group Membership		- Group Member			sys_user_grmember		(empty)
+
+--> If the Name starts with imp it is temporary
+--> Group Membership - Very Important because if we want to load 5000 members we cannot do one by one, in such situation it helps
+
+
+
+--->>> Table Prefix 
+	
+	- sys - System Generated
+	- cmdb - Configuration Management Related
+	- alm - Asset Management Related 
+	- imp - Import Set Related  ---> This will be used in Data Load
+	- u_  - User Defined (Custom Tables)
+	- sla - Service Level Agreement
+
+
+
+Assignment 1 -
+
+
+1. Create Update set
+2. Enable Extends in sys_user
+3. Create Table and Extend from the sys_user Table
+4. Add the Fields that does not exist
+5. Edit the Form Design accordingly
+
+
+Assignment 2 - 
+
+1. Application Name - Ticket
+2. Create Update Set 
+3. Enable Extends in Task
+4. Create New Table and Extend from Task
+5. Add the fields that Does Not exist
+6. Edit the Form Design accordingly
+
+
+Assignment 3 - 
+
+Create a role for the Employee Application End Users -
+
+	- Employee_admin : Should have access to all the modules inside the Employee Application
+	- Employee_payroll : Access to Employee Pay Application
+	- Employee_user : Should have access to basic employee application
+
+Solution - 
+
+
