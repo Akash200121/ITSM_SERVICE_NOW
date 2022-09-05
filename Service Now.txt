@@ -1025,6 +1025,8 @@ SERVICENOW DEVELOPMENT
 		- Database Index is already created
 		- When Table is created and saved the Frontend and Backend (i.e Table and Form both are created)
 		- The Updates made in a Development is found in the Update Set
+		- Name cannot be edited once saved
+		- Extend cannot be used before saving
 
 >> In Service Now everything is Table at the Backend and Form in the Frontend
 >> We can as well delete any Updates
@@ -1062,7 +1064,7 @@ SERVICENOW DEVELOPMENT
 
 >> In the Update Set Log we have many predefined logs
 
->> The child class can be used in a Update Se
+>> The child class can be used in a Update Set
 >> Project - Employee Management
 	
 	- Employee pay
@@ -1164,7 +1166,7 @@ Solution -
 
 	1. Create Update Set
 	2. Create an Application - Library Management System
-	3. Assign Roles to Librarians
+	3. Assign Roles to Librarians(Group)
 	4. Test
 
 2. We have a project 
@@ -1318,7 +1320,7 @@ Excercise -
 Solution -
 
 - Open the Design form 
-- Change the number of columns we need and accordingly drage and drop the Fields in the manner we want
+- Change the number of columns we need and accordingly drag and drop the Fields in the manner we want
 - If we want to add a new section use the add button on top left
 - When we want to add a new field, choose from field type and drag and drop
 	- Whenever we are Changing the name while creating new field Type, the Backend value must be as per the Standard naming convention followed
@@ -1337,6 +1339,22 @@ Solution -
 		- Forms --> Disable Tabbed Forms
 
 
+--> Two methods of Form Design
+
+	- Form Design 
+	- Form Layout
+
+-->> In the Form we want to add a field where that field is visible only to those logging in from the mobile
+	- For this we have an option in Form called View
+	- This must be changed to Mobile View and then the Form Design can be edited accordingly
+
+--> Two ways of adding a new option in any of the fields
+
+	- We can do it from the Frontend using - Form Design 
+	- We can as well do it from the Form View by right clicking and configure Label
+
+--> Configuration Item - Reference can be checked from forms in the form view right click the field and it appears 
+						 Instead this can be done by going and checking in Form Design
 Assignment -
 
 Add following fields in the following Form 
@@ -1874,4 +1892,124 @@ Solution -
 3. In the Filter Option choose caller and Department
 	- Caller.Department is Product Management or Sales
 	- And Active is True
+
+
+
+>>> When we have to send report everyday and all the changes made in the report must automatically be prepared 
+Then we choose - Scheduled Report
+
+
+Scheduled Reports
+
+	- We can schedule the execution of any report at a specified time
+	- Example - 9 AM every day
+	- Weekly Report - Every Saturday
+	- Monthly Report - 30th of every month
+
+We can schedule these and this will run and execute automatically and generate the report
+
+- In any Report we have an option of Schedule
+
+
+
+-->> Assignment 
+
+	- Schedule a report which will run every friday at 3 Pm for Change Requests by category(My Gorups)
+
+
+Solution - 
+
+1. View/Run Reports
+2. Choose Change Requests by category(My Gorups) Reports created 
+3. You have a Sharing option 
+4. From there you can add the Schedule as Weekly and Choose Day as friday
+5. Add the time 3 Pm and the group / User whom we want to share with 
+
+
+
+- Use Case 
+
+	- Share a report with a user / Group
+	- SND Group users
+	- And test whether it is visible to anyone who is a member of the group 
+
+Solution - 
+
+1. View/Run Reports
+2. Choose any Reports Created 
+3. You have a Sharing option 
+4. From there you can add the group / User whom you want to share this report with 
+5. The user can access the report
+6. Check this by Impersonating the other User
+
+
+
+
+-->> Dashboard
+
+	- Earlier used Dashboard - CMDB View
+	- Dashboard contains widgets
+	- Each widget is a report
+	- Reports are embedded on the dashboard 
+
+>> What is a dashboard ?
+A dashboard provides a single pane of glass to monitor multiple key indicators
+
+>>> Why we choose Dashboard under Self Service 
+
+Dashboard is part of Self Sevice and Under the Self Service 
+To look at How my team is performing ?
+How many Tickets you have worked in last one week or how many incidents you have worked for last one month 
+These information is important and must be available to showcase as and when required
+
+
+
+- Use Case 1
+
+	- Create a new Dashboard "<your name - Dashboard>"
+	- This dashboard will contain all the informaton related to the incident management module
+
+Solution - 
+
+	- From Filter Navigator choose Self Service - Dashboard
+	- Name it Aka_Inc
+	- Then save - below you will see an option to display dashboard
+	- Now click on top right + button
+	- This will allow us to add widgets
+	- Choose Reports and then search for incidents 
+	- Add all the fields required
+	- Here we have a adjustment button which will allow us to configure the Color, add Tabs, Change Layout
+	- The Tab is used to display many Reports in a single Dashboard
+
+
+--> Assignment
+
+Create a dashboard to show following details
+
+	- Change Management
+	- Problem Management
+	- Asset Management
+
+Solution -
+
+	- From Filter Navigator choose Self Service - Dashboard
+	- Name it CMA
+	- Then save - below you will see an option to display dashboard
+	- Now click on top right + button
+	- This will allow us to add widgets
+	- Choose Reports and then search for Change
+	- Add all the fields required
+	- Similarly add a new Tab and Then add the Widgets for Problem 
+	- Add all the required fields and customize the layout and color 
+	- Do the same for Asset Management
+
+
+The option of Sharing is Available in Dashboard as well 
+Dashboard shows real time data
+
+Why we dont have scheduling in Dashboard ?
+
+Dashboard shows Real Time Data and Report has to be run each and everytime so that it shows the changes made 
+Scheduling a report is used to run the Report automatically at certain specific time and day / date so that 
+
 
