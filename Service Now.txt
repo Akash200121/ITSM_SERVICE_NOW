@@ -102,6 +102,8 @@ On the Filter Navigator we have different Apps and it in-turn has many Modules
 
 The Content Frame is Dynamic in Nature and shows dynamic data based on the Application or Module
 
+The Application name is typed with an 's' as it has to be in plural form
+
 
 IN THE INSTANCE PORTAL
 
@@ -264,7 +266,7 @@ Assignment -
 
 1. There is a team and it works on Assets and also works for Reporting
 
-What are the Roles avaailable in the system
+What are the Roles available in the system
 
 Answers
 
@@ -821,7 +823,7 @@ ITSM SUITS -
 4. Knowledge Management
 5. Change Management
 6. Service Request
-7. Asset Management
+7. Asset Management + CMDB
 
 ------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -1436,10 +1438,10 @@ Create a role for the Employee Application End Users -
 Solution - 
 
 1. Update Set
-2. Create New Roles  
+2. Create New Roles With Names - Employee_admin, Employee_payroll, Employee_user
+3. Assign Table Role for each of them  
 
-
-
+-----------------------------------------------------------------------------------------------------------------------------------------
 
 01/09/2022
 ----------
@@ -1501,7 +1503,7 @@ Solution -
 >>> Load Data
 	
 	- Filter Navigator --> Load Data Application 
-	- If we want we can create a Table or Use Existing Table 
+	- If we want we can create a New Import Set Table or Use Existing Table 
 	- Advised to create a Table
 	- Then we load the data set
 	- Then we have to click Tranform Map 
@@ -1541,3 +1543,289 @@ Important -
 
 
 ** Difference between Update Set vs Import Set - 
+
+
+Run Transform - Is used when we are adding some more data but keeping the Template same 
+				
+
+1. Edit the Excel with some additional data 
+2. Then Load Data of the updated Excel
+3. Run Transform 
+4. Check the Transform Map and Click Transform 
+5. Validate this in the User Table
+
+
+
+Project 1 -
+
+- Implement New Customer - Company Name : Rebooted
+- Company will have the following "Foundation Data"	-
+		- Company
+		- Departments - 20 Departments
+			- Department Names : RBT DEPT-01 till RBT DEPT-20
+		- Teams - 50 Teams
+			- RBT GRP-01 till RBT GRP-50
+		- Users - 1000
+			- Rebooted 01 till Rebooted 1001
+		- User Roles
+		- Location - 10 Location 
+			- Location Names : RBT LOC-01 till RBT LOC-10
+		
+	Rebooted 01 to Rebooted 100 --> RBT GRP-01
+
+
+Solution -
+
+1. Search Company in Filter Navigation - User Administartion - Companies
+2. Create a company with name - Rebooted
+3. Create a template in a single Excel sheet for each of the Foundation Data
+4. Add the Data in all the necessary fields 
+5. Common fields must have the same data throughout the Excel
+6. Load the Data 
+7. Map each sheet and Transform 
+8. Validate in the Respective Tables
+
+
+-->> 
+--> Task - Share Company with each other
+Solution:
+	- Importing Company Name from XML File
+	- Checking the Sys Id
+	- The ID is same and also the data is protected in this case
+
+
+**	To Shift the DATA between diffrent instancs is possible, firstly create find the data
+    which is to be shifted and then convert it to XML format, once that is done,
+    it can be shared to other instance as well.
+
+    To load an instance, go to the column header and then right-click and select
+    import, this will allow the import of the data, through an XML format
+
+	    
+>>> Automated User Creation
+
+LDAP - Lightweight Directory Access Protocol
+
+- It is a central repository of all the user related Information
+- It can be integrated with the serviceNow and other systems
+
+>> Benefits - Creation of Users and their access can be Automated
+
+
+>>> User creation Process - 
+
+Create new LDAP Server
+	- Here automatically Groups and Users are created
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+02/09/2022
+----------
+
+Chapter - 12
+
+CMDB - Configuration Management Database(Heart of ITSM)
+
+>> What does it store ?
+
+- It stores CI's and its Relationships
+
+
+>> Filter Navigator - Assets -> All Assets
+
+>> How to create an Asset ?
+
+- Click on New
+	- We have 4 types of Asset
+	- If we want to add we have Edit Interceptor 
+	- Choose the Model Category and Model
+
+In Hardware CI 
+- Primary Identifier is the Serial Number (Mandatory after choosing the Model)
+
+	- After giving the Asset Number and Serial Number
+	- Saving it will show 
+		- Display Name - It is the combination of Asset Tag and Model
+		- CI - This utomatically gets created once an asset is created  - It is the combination of Serial Number and Model
+
+
+Asset Management Life Cycle - 
+	State of the Asset
+		- On Order
+		- In Stock 
+		- In transit
+		- In use
+		- In maintenance
+		- Retired 
+		- Missing
+		- Build
+
+
+
+--> Out of Syllabus
+
+	- ITOM 
+		- Discovery Tools - There are different Discovery Tools avaailable
+		- These tools can scan the entire network and populate the CMDB
+		- Example of Discovery Tools
+			- ServiceNow Discovery
+			- BMC Discovery
+			- Device42
+
+
+
+>>> Tables and its Relationships
+
+Very Important
+
+
+>> CI Class Manager 
+
+- Search for CI Class Manager 
+- Check the Hirarchy
+- In Hirarchy --> Hardware --> Server --> Windows Server
+									  --> Linux Server
+									  --> Other Server
+
+- The Name of the Tables stored is like a branching from the CMDB Table 
+
+
+- Avoiding Duplication 
+
+	- Here Serial Number is Unique Identifier for a Hardware asset
+
+
+- Assignment
+
+	- Load the Data provided by the Client 
+	- The Data File contains 100 Linux Servers 
+	- Load them and Confirm
+
+Solution -
+
+1. Load Data 
+2. Give Coalesce as name
+3. Check Linux - under Servers
+
+
+- Assignment
+
+	- Create a Load File to Load 50 Network Gears
+	- The name of Network Gears should be : RBT-NetworkGear-01 till RBT-NetworkGear-50
+	- Serial Number is same as the Name
+	- Load the Data and Confirm
+
+Solution - 
+
+1. cmdb_ci_netgear
+
+
+
+>> CMDB - Health
+
+1. It is a Dashboard which showcases the Health Status of our CMDB
+
+> Go to CMDB View
+> Populating Data
+	> CMDB Health Dashboard Jobs
+		- Active = True 
+		- Execute Now
+
+The More the health of CMDB it is good
+
+>> Go to the Duplicate and click any one of the Duplicate Task and do Remediate
+
+--> Most Related Items
+--> Newest Updated - This must be Kept as we have the Updated One 
+--> Oldest Created
+
+--> Discovery Tool finds and updates the New one so we keep the new 
+	This also depends on situation
+
+
+
+>>> Assignment - 
+
+	Run the De-Duplication process for the Printer CI'
+	Clean the 26 Duplicates showing on the CMDB View Dashboard
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+05/09/2022
+----------
+
+Chapter - 13
+
+REPORTING and DASHBOARDING
+
+- How many incidents currently assigned to Service Desk Team
+- How many Computers currently been assigned to Sales Team
+- How many users did not login for the past 30 days
+- P1 Incidents which had breached the SLA Last week
+
+
+
+- This Report is available for access to Admin, ITIL, Report User
+
+- There are 2 types of Reports 
+	- OOTB Reports - Those reports which is provided by the system
+	- Custom Reports - Reports created Later
+
+
+- In the filter Navigator 
+	- Reports Application - View / Run
+	- OOTB Reports - nearly 500 reports available
+
+
+- Other Reports that we can create is Custom report
+
+- Point to be noted 
+	In both the OOTB and Custom Reports we can Edit it
+
+- How to Edit and Create a Brand New Report ?
+
+	- 
+
+
+--> Use Case 1
+
+	 - Showcase all the incident currently assigned to members of Service Desk Team
+
+Solution -
+
+- In the Reports Application "Create New"
+
+	- Step 1 : Data
+
+				- Create New under Report 
+				- Report Name Incidents currently .....
+				- Source Type - Table
+				- Table - Incident[Incident]
+
+	- Step 2 : Type
+
+				- Type of report we want to Generate
+				- Generating Bar Chart
+					- If we want to change the True and False we need to modify
+					- We go to next Step 
+
+	- Step 3 : Configure
+
+				- Configure option provides us with more options
+				- We can change the Group by 
+					wherein we change it to Assigned to 
+				- In the filter we change to Assignment group = Service Desk and Run we get the Bar chart as required
+
+			
+	- Step 4 : Style
+
+				- Allow to put different types of color
+				- We can use the best suited one
+
+
+- Use Case 2 
+
+	 - Showcase all the change tickets based on their type 
+	 That means : Normal, Emergency and Standard Changes
