@@ -1825,7 +1825,53 @@ Solution -
 				- We can use the best suited one
 
 
-- Use Case 2 
+- Assignment
 
 	 - Showcase all the change tickets based on their type 
 	 That means : Normal, Emergency and Standard Changes
+
+
+Solution - 
+
+1. Create New Report 
+2. Name it as "Showcase all the change tickets beased on their type"
+3. Select Source Type - table
+4. Use the Change Request table
+5. Configure the Group By as "Type"
+6. Select Style and Done 
+
+
+--->>> DOT WALKING
+
+	- We can use any common reference field in the table to refer the data present in the other table
+	Example - In Incident Table : Caller Field (Which is the User Table)
+	Find the data (which is user type = VIP) this can be used for the next Use Case
+
+--> Use Case 2 (Important)
+
+- Show me all the incidents created for the VIP Users
+
+Solution - 
+
+1. Create New Report
+2. In the Table Choose Incident[Incident] Table
+3. In the Filter Option choose caller and VIP 
+	- It will be showcased as Caller.VIP is True
+	The . is the DOT Walking - That is it leads from one field to another field
+
+4. Run this and it will show the results
+
+
+- Assignment
+
+	- Show me all the Incidents created by the users of department "Product Management" or "Sales" and which are currently in active state
+
+
+Solution -
+
+1. Create New Report 
+2. From the Table choose Incident[Incident] Table
+3. In the Filter Option choose caller and Department
+	- Caller.Department is Product Management or Sales
+	- And Active is True
+
