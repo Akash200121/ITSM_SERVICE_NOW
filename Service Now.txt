@@ -1644,6 +1644,7 @@ Create new LDAP Server
 Chapter - 12
 
 CMDB - Configuration Management Database(Heart of ITSM)
+=======================================================
 
 >> What does it store ?
 
@@ -1777,6 +1778,7 @@ The More the health of CMDB it is good
 Chapter - 13
 
 REPORTING and DASHBOARDING
+==========================
 
 - How many incidents currently assigned to Service Desk Team
 - How many Computers currently been assigned to Sales Team
@@ -2013,3 +2015,236 @@ Dashboard shows Real Time Data and Report has to be run each and everytime so th
 Scheduling a report is used to run the Report automatically at certain specific time and day / date so that 
 
 
+-----------------------------------------------------------------------------------------------------------------------------------------
+06/09/2022
+----------
+
+Chapter - 14
+
+CORE DEVELOPMENT
+================
+
+--> 1. WorkFlow
+--> 2. Service Catalogue
+
+
+>> What are the different places which we have discussed earlier wokrflow was used in the Backend
+
+Solution - 
+	- Change Management
+	- Knowledge Management
+	- SLA
+
+
+--> WorkFlow - 
+		- Used to Automate Sequence of Activities
+	Definition - It is a Sequence of activities
+
+	-->> Application used to navigate to the list of the WorkFlow
+			Filter Navigator --> WorkFlow --> WorkFlow Editor
+
+	-->> How to view the list of Workflow Present in the System
+			We can go in the Workflow Editor and view the Workflow
+
+	>> TO create a new Workflow - We have "New WorkFlow" or the "+" Button on the Top Right
+
+	>> Here we have two States of WorkFlow (Types of WorkFlow) -
+
+		1. Published - Currently it is in Use, cant be modified
+		2. Checked Out - Under maintenance / Development / modification
+
+--> What are the Activities present in the WorkFlow
+
+	- Select any WorkFlow from the Right Side (Choosing Change Request - Normal)
+	- Transition / Transition Lines - The Arrow Marks that is displayed in the woring 
+	- Each Box is one of the Activity present in the Workflow
+	- Both Tansition Lines and Activities together form a WorkFlow
+
+--> How to find different list of activities in the WorkFlow
+		- In the Right Side we have something called Core Activities
+		- This shows the various list of activities of WorkFlow 
+		- These can be used in an existing or New Workflow
+
+
+--> How to Edit Existing WorkFlow 
+
+	- If the WorkFlow is in Published it cannot be modified
+	- To modify any WorkFlew we have to click Three Lines on the Top Left and We get the Option of Checkout
+	- Now we can edit the activities
+
+
+--> WorkFlow Versions 
+	- Each time a WorkFlow is Checked out and published it creates a New WorkFlow Version
+
+- To find out Workflow Version 
+	- Type WorkFlow Version in Filter Navigator
+
+
+>>> Question - We have 5 Change Requests which is currently in the scheduled and in the Implementation Stage
+			   Workflow is Modified today will it impact the open change Requests
+
+	Solution - 
+				No Impact
+			Reason : Existing Changes will follow the Currently attached WorkFlow
+					 The New WorkFlow will be applicable only for the newly created changes
+
+
+--> Creating New WorkFlow
+
+	- Name of Workflow - Software Installation Request
+	- Give the WorkFlow Name and Then the Table Name
+	- The Request are stored in sc_req_item Table
+	- Submit
+
+	-- After Submitting we get a Starting Point - Begin
+	-- After Submitting we get an Ending Point - end
+
+	-- Now we need to construct Activity
+
+		1. The first Activity we construct is User Approval (Software Installation Manager Approval)
+				- if it is approved it will go to Step 2 else it will go to Step 4
+
+		2. Next we give the Group Approval (IT Software Team Approval)
+				- If it is approved it will go to Step 3 else Step 4
+
+		3. Next we give a Catalogue Task and assign it to Software Team
+				For Incident and Change we have a Task we create Task
+				Catalogue Task is more useful when creating a Service Request
+				It is necessary to give the Description of the Task
+		
+		4. We create a Notification if the Request is Rejected 
+
+		5. Then We create a Notification that Software Installation is complete to the Service Desk Team
+
+		6. End
+
+		7. Last we branch the WorkFlow accordingly
+
+
+
+-->> Assignment 
+
+		When the New Laptop Request is made it will go to Approval to check the availability in the Inventory (Asset Table) (Group Approval)
+		If it is available (Approved) Then we will check the Software Installation Request - This will be done in Catalogue (Group Approval)
+		If it is Rejected then it will go to the Rejected Notification (Not Needed)
+		If it is approved --> Laptop is Ready (Task)
+							  Book Shipment (Task)
+					Notification : Delivered Successfully 
+		Then End
+
+
+Solution - 
+
+	1. Create Update Set
+	2. Create a New WorkFlow
+	3. sc_req_item Table
+	4. Hardware Availablity - Group Approval - Hardware Team 
+	5. Software Installation Request - Group Approval - Software Team
+	6. Catalogue Task - Laptop is Ready
+	7. Catalogue Task - Book Shipment
+	8. Notification to Service Desk - Delivered Successfully
+	9. End
+	10. Connect the Brach of WorkFlow
+
+
+
+
+-->> Service Catalogue / Service Request Management
+
+1. Service Portal - Service Portal is a Portal which conatains Catalogs, Knowledge Articles and related Items
+					Also referred as Self Service Portal
+					
+Who will use it ?
+	This used by End Users / Self Service Users
+	Used to promote the self service
+
+Why do we need it(Service Portal) ?
+						
+	Ticket logged via Service Desk : Cost + Efficiency
+		
+--> How does an end user create an incident
+	Call Service Desk
+
+	Cost involved in Service Desk - 
+
+		- Hire the Employees
+		- maintain Assets
+		- Location 
+		- Software
+		- Internet / Telephone
+	
+	Limitation -
+
+		- Delay in providing service
+
+
+>> How to access Service Portal ?
+https://instancename.service-now.com/sp
+	
+>> Creating a Sevice Request 
+	- Request Something
+		- Go to Hardware --> Galaxy S9
+		- Order and Checkout
+		- Now we have a REQ number (Request Number) -> Copy REQ number
+		- When an end user requests this is how he does 
+	
+	- In Dev Portal 
+		- Global Search Icon in header we need to paste the REQ number
+		- This will give the Request
+
+- Three Level of Hirearchial Architecture of a Request
+
+	- REQ
+		- RITM
+			- SCTASK
+
+			One or more SCTASK possible under RITM
+	
+The REQ, RITM, and SCTASK is controlled by Workflow
+
+- REQ - Ticket that is created 
+
+	- Then we have RITM 
+		- Actual work will start in RITM
+			- one or more Team can be assigned Task
+	- We can configure Form Design and add Assignment Group
+
+
+--> For one Request there can be multiple RITM(Requested Items)
+
+
+
+Ticket Generation - 
+
+	- First REQ 
+	- RITM
+	- SCTASK
+
+Resolution - 
+
+	- SCTASK is closed First
+	- Then RITM
+	- REQ
+
+
+--> How to design the Service Portal ?
+
+		-- Filter Navigator --> Portal --> Service Portal Configuration 
+		--> Branding Editor --> Add Image
+		--> This platform is independent of the Portal Image in ServiceNow
+		--> We can also select Background Image and change the theme
+
+
+
+--> Assignment 
+
+	Please do the branding of your sp portal 
+	Change the Logo
+	Theme Color
+	Branding things
+
+
+
+
+
+	
