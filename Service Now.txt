@@ -2245,26 +2245,32 @@ Resolution -
 
 
 
->>> Service Catalog 
+>>> 1. Service Catalog 
 
 	- Types of Service Catalog
 			- Service Catalog
 			- Record Producer
-			- Order Pr
+			- Order Guide
 
-	
+The need of Service Catalog is for the end users to raise a ticket from the portal, this reduces the cost spent on Service Desk which can be utilised for other purpose
+
+---> Catalogs are embedded in the Service Portal
+---> In other words Service Portal contains multiple Catalogs
+---> These catalogs are segregated under the categories
+
+
 1. Once the service catalog is executed it will produce 
 		REQ
 		RTIM 
 		SCTASK
 
 2. Service Catalog uses WorkFlow or Flow in the Backend
-	WorkFlow / Flow will provide the Backend Logic which controls the steos in the catalog execution
+	WorkFlow / Flow will provide the Backend Logic which controls the steps in the catalog execution
 
 
 --> Excercise - 
 		Similar to the Excercise of WorkFlow
-	Create a Service Catalogue to request for the new SOftware Installation on your laptop, while taking this request following questions to be Asked
+	Create a Service Catalogue to request for the new Software Installation on your laptop, while taking this request following questions to be Asked
 
 	Q1 : Requested for
 
@@ -2300,7 +2306,7 @@ Solution :
 						It is the WorkFlow
 						We have to make sure that the WorkFlow is in published State
 
-	10. Then picture the Look and Feel 
+	10. Then picture for the Look and Feel 
 
 	11. Pricing is not needed 
 
@@ -2318,7 +2324,12 @@ To change Add to Cart, Quantity and Delivery Time
 
 	- Variables are like the fields in the Form Design
 	- It is used to add different questions here
->> Variables -
+>> Variables - Variables are the questions available on the catlog
+			   Used to recive input from requester
+			   We have diffrent types of variables to be selected
+    				-> reference
+    				-> String
+    				-> Select Box ......
 	
 	14. New
 		Type --> Reference
@@ -2351,3 +2362,382 @@ To change Add to Cart, Quantity and Delivery Time
 	17. Now check the Service Portal 
 
 
+
+
+
+07/09/2022
+----------
+
+CONTINUATION.....
+
+
+>> Here Order Number is like a sequence Number(Serial No)
+	- Here we are giving like 100, 200, 300, 400... this enables us to add any other variables between say 300 and 400 it will not affect other Variables
+	
+
+>> Different Types of Variables
+	- String Field - Single Line Text
+	
+	18. Using Single Line Text Variable Type
+			- Short Description 
+			- Order - 300
+
+	19. Using Multi Line Text
+			- Business Justification for the Installation
+			- Order - 400
+	
+	
+--> Assignment 
+	Find out the corret Variable Type is suited for -
+			1. Email
+			2. Phone Number
+			3. Is it funded ?
+			4. Select the software : List of the Software present in the cmdb should be visible to select
+
+
+Solution - 
+			1. Email
+			2. Single Line Text
+			3. Yes / No
+			4. Reference - cmdb_ci_spkg
+
+
+>>> Variables only in the Native UI -
+
+	1. Container
+	2. 
+
+--> If we want to keep any questions inside a Container - 
+	Container will have a "+" Sign when clicked gets expanded
+	Container is also a variable type
+
+	20. Create new variable - 
+				- Type : Container Start 
+				- Order - 250
+				- Optional Questions
+				- It is important to check on Display Title else the Container will not be visible
+
+	21. Create New Variable - 
+				- Type : Container End
+				- Order - 500
+				
+	22. Click on Try it to see the container
+
+
+This means the Order from 250 to 500 is enclosed in a container 
+This container is only visible to those who access ServiceNow
+
+
+The end users can access ServiceNow through 2 Ways 
+	- Native UI : ServiceNow Instance
+	- Portal UI : Service Portal
+
+While accessing from ServiceNow	- Service Catalog that we created - Try It will show us the Container
+While accessing the Catalog from the Service Portal it will not be visible
+
+
+
+>> Execute and Testing
+
+Here we raise a request and test the working of the REQ
+The Workflow is tested here
+
+	- Create a Request and copy the REQ number and do a global Search
+	- Go into RITM
+		- Here we can see whatever information the user has entered
+	- Now in approver we have to approve on behalf of Abel Tuter and Save
+	- Then it must go into Group Approval
+		- If anyone of the approver approves it goes to the next Level
+
+
+
+--> Assignment 
+
+	Create a new catalog
+	Name : New Joiner Laptop Request
+	Questions to be asked -
+		- Name of the New Joiner
+		- Department
+		- Laptop type (Business Laptop, Sales Laptop, Executive Laptop)
+		- Headset(This option should be auto selected for all request)
+
+Solution :
+
+	1. Create a new Update Set 
+		Name : New Join Laptop
+	
+	2. Add a Brand New Catlog 
+		Name : New Joiner Laptop Request 
+		Catalog : Service
+		Category : Service
+	
+	3. Change the Process Engine add the New Laptop Request WorkFlow
+
+	4. Add the Icon and picture
+
+	5. Give a Short Description 
+
+	6. Save 
+
+	7. Add the Questions as variables
+			- Name of the New Joiner - either using sys_user or Short Line Text
+			- Department - Reference - cmn_department
+			- Laptop Type - Select Box
+				- Add all the choices 
+				- Type specification - Include None
+			- Handset(Default) - Use Yes/No and give Default Value as Yes
+	
+	8. Now Update and check in Service Portal
+
+
+
+
+>>> 2. Record Producer 
+		- Is used to create Incident/ Change/ Problem
+	
+	- It does not use any workflow or flow in the Backend
+	- No Backend Logic needed
+	- Record producer are used to generate - 
+			- Incident
+			- Change
+			- Problem
+
+
+>> What is the mechanism used here ?
+	- Field mapping is used between table selected(Incident/change/problem) and the record producer variables
+
+Here the Record Producer is based on the mandatory fields in the Incident, Change, Problem
+
+
+>> Steps 
+
+	1. Filter Navigator --> Record producer --> Catalog Definition
+
+
+>> Use Case 
+	
+	- Create a record producer which will generate an incident on execution
+
+Solution - 
+
+	- Here Caller and short description are the mandatory fields
+	
+	1. Create New Record Producer
+
+	2. Name - Incident Creation
+
+	3. Table Name - incident
+
+	4. Accessibility - 
+		- Catalog - Service Catalog
+		- Category - Services
+	
+
+	5. Short Description - same as name
+
+	6. Select any Icon and picture
+
+	7. Save
+
+	8. Now Variables 
+		- Here in Variables when we create a new Variable --> We must choose Map to Field
+
+	9. New
+		- Type - Short Description
+		- Order - 100
+		- Field Name - Short Description
+		- Add the Question 
+
+	10. New
+		- Type - Reference
+		- Order - 200
+		- Field Name - Caller
+		- Reference table - sys_user
+		- Add the Question 
+
+	11. Test in the Service Portal
+
+
+
+--> Assignment 
+	
+	Create a Record Producer to generate a Normal Change Request
+
+Solution -
+
+	1. Create a new record producer
+			Name : New Normal Change
+
+	2. Table Name : Change Request
+
+	3. Accessibility - 
+			- Catalog - Service Catalog
+			- Category - Services
+
+	4. Short Description
+
+	5. Add icon and picture
+
+	6. Save
+
+	7. Add Variable
+			- Here while adding variables we must map to field 
+
+		New:
+			- Type - Referenc/Short Description 
+			- Order - 100
+			- Field Name - Caller
+			- Add the Question 
+			- Reference Table - sys_user
+			- Map to Caller
+		
+		New :	
+			- Type - Select Box
+			- Order - 100
+			- Field Name - Category
+			- Add the Question and choices 
+			- Type specification - Include None
+			- Map to Category
+		
+		New :
+			- Type - Reference
+			- order - 200
+			- Field Name - Service
+			- Add question
+			- Reference Table - cmdb_ci_service
+			- Map to Service
+		
+		New :
+			- Type - Reference
+			- order - 300
+			- Field Name - Configuration Item
+			- Add question
+			- Reference Table - cmdb_ci
+			- Map to Configuration Item
+
+		New :
+			- Type - Short Description
+			- Order - 400
+			- Field Name - Short Description
+			- Add question
+			- Map to Short Description
+
+	8. Update and Test
+
+
+
+--> What is the Variable set ?
+	Any Variable Defined under a Variable Set can be use under any Catalog Item
+
+
+	- Defining a Varible Set First and then Defining a Variable inside the Variable set
+	- This provides Reusability
+
+	- To check Maintain Items --> Select any of the Catalog Items and Edit the Variable Set
+
+
+
+--> Assignment
+
+	Create a Variable under Variable Set
+		- Variable Set Name - Universal
+		- Variable Name - Universal Variable
+	
+	Test : Check if this Variable "Universal Variable" can be used in any other catalog / Record Producer
+
+Solution : 
+
+		1. Take any of the Catalog Item
+		
+		2. Add a new Variable Set
+				Name : Universal
+		
+		3. Inside the Variable Set create a new Variable
+				Name : Universal Variable
+		
+		4. Check in any other catalog whether this variable set appears by choosing edit option 
+
+
+>>> 3. Order Guide
+
+- It is the collection of the service catalogs
+
+	Example : 
+	New Employee Hiring
+
+			- Campus Interview
+			- Selection Process
+			- Onboarding
+			- Training
+			- Project Onboarding
+			- Employment Formalities
+			- Assets Issued
+			- Salary related Item
+
+
+- Limitation
+
+	- Each catalog is Generating one REQ
+	- We have to track multiple REQs 
+	- Difficult to track so many tickets
+
+Order Guide
+	- It creates only one REQ and multiple RITM under That
+	- The other Catalogs are added in the Rule Base
+
+--> Filter Naviagtor -> Order Guide 
+
+1. In any order guide(New Hire)
+
+2. While scrolling down we find a Rule Base wherein we have 9 catalogs
+
+
+
+>> Use case
+
+	Create an order guide which will include the following catalogs
+
+			- Standard Laptop
+			- Development Laptop
+			- Sales Laptop
+			- Desktop Set up Request
+
+Solution :
+
+	1. Create New Order Guide
+		- Name : New Hire Laptop Request
+	
+	2. Choose Catalog - Service
+
+	3. Category - Laptop
+
+	4. Rule Base 
+			- Add all the catalogs 
+			- At this Postion - Number
+	
+	5. Update and test in Service Portal
+
+
+
+--> Assignment
+
+Create a order guide to capture all the following Infrastructure related requests 
+
+		- Reboot Windows Server
+		- Server Tuning
+		- Server Reboot
+		- Database Server
+
+
+	1. Create New Order Guide
+		- Name : Infrastructure Requests
+
+	2. Choose Catalog - Service
+
+	3. Category - Services
+
+	4. Rule Base
+			- Add all the catalogs
+			- At this position - Number
+	
+	5. Update and test in Service Portal
