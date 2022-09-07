@@ -2584,7 +2584,7 @@ Solution -
 			- Here while adding variables we must map to field 
 
 		New:
-			- Type - Referenc/Short Description 
+			- Type - Reference/Short Description 
 			- Order - 100
 			- Field Name - Caller
 			- Add the Question 
