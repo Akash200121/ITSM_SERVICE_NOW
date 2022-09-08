@@ -2728,6 +2728,7 @@ Create a order guide to capture all the following Infrastructure related request
 		- Server Reboot
 		- Database Server
 
+Solution :
 
 	1. Create New Order Guide
 		- Name : Infrastructure Requests
@@ -2741,3 +2742,544 @@ Create a order guide to capture all the following Infrastructure related request
 			- At this position - Number
 	
 	5. Update and test in Service Portal
+	
+-------------------------------------------------------------------------------------------------------------------------------
+
+08/09/2022
+----------
+
+Chapter - 15
+
+CORE DEVELOPMENT Activities
+===========================
+
+--> Frontend : Form (UI/Browser)
+--> Backend : Tables (Server)
+
+Any Application is built upon the Client - Server Architecture
+
+What is Client - Server Architecture ?
+
+	The data of any application is stored in Server
+		Backend is storing the data 
+	and Frontend is showing the data
+
+
+Client - 
+	- It is the Web Browser using which ServiceNow application is accessed
+	- The Forms opened in the screen in front of you is referred as the Client
+
+Server - 
+	- This is the Centralized place where all the Data is stored
+	- Server Hosts database and the Tables
+
+
+
+>> Exercise
+
+	We have the employee application these are the Properties to be set 
+		--> Employee name should be mandatory
+		--> Employee Number : read - Only
+	
+	Above properties should be applicable only for the users of ACME China
+
+
+Solution :
+	This change is happening in the Server
+	
+Here we are seeing enforcing Data Policy - Server Side Policy
+
+1. Filter Navigator --> AkaEmp --> Open a record 
+	--> Right click on top --> Data Policy
+
+2. New Data Policy -
+	Name : ACME China Data Policy
+	Save
+
+3. Scrolling down we click New Data Policy Rule -
+	- New
+	- Select Field Name : Employee Name
+	- We can make it Read only True, False or Leave Alone
+	- Mandatory = True
+
+4. 	- New
+	- Select Field Name : Employee Number
+	- We must make Read Only - True
+	- Mandatory = Leave Alone
+
+5. Now in the condition 
+	- Company is ACME China
+
+
+
+--> What is Data Policy ?
+	- Used to control the field properties during Run Time 
+	- Dynamically 
+			- Based on the condition
+	- This property is applied from the server side
+
+--> What are the Field Properties ?
+	- Mandatory
+	- Read Only
+
+
+--> Assignment -
+
+	Incident created for the company - ACME Japan :
+		Following fields should be applied
+
+			- Mandatory : Impact and Urgency
+			- Read Only : Service
+		
+Solution :
+
+	1. Open a new Incident and Right click on top and choose Data Policy
+
+	2. New Data Policy -
+		Name : ACME Japan Incident Policy
+	
+	3. Save 
+
+	4. Condition -
+
+		Company is ACME Japan
+	
+	5. Add New Data Policy -
+		Field Name : Impact 
+		Mandatory = True
+	
+	6. Add New Data Policy -
+		Field Name : Urgency
+		Mandatory = True
+
+	7. Add New Data Policy -
+		Field Name : Service
+		Read Only = True
+
+	8. Save, Update and Test
+
+
+Demerit of Data Policy -
+
+	1. More Pressure on Server
+
+
+--> What is UI Policy ?
+	
+	- Used to control the field properties during the runtime.
+	- Dynamically based on the condition 
+	- This property is applied from the client side
+
+- What are the field properties
+    a) Mandatory
+    b) Read Only
+    c) Visibility 
+
+--> Benefit 
+	To reduce the load on the server it is better to have the rules defined at the browser level
+
+
+There is an option to convert any Data Policy to UI Policy (Available in Data Policy List as Covert to UI Policy)
+
+
+Use Case :
+	Problem form following properties should be set
+
+			- First Reported by - mandatory
+			- Service : Read Only
+			- Service Offering : Hide (Invisible)
+
+	Condition - Applicable only for the problem created for Hardware Category
+
+Solution :
+
+		1. Open New Problem 
+
+		2. UI Policies
+
+		3. New UI Policy
+
+		4. Short Description - UI Policy for problem
+			Save
+		
+		5. Condition -
+			Category : Hardware
+		
+		6. New UI Policy Action -
+				Field Name : First Reported by 
+				Mandatory = True
+		
+		7. New UI Policy Action -
+				Field Name : Service
+				Read Only = True
+		
+		8. New UI Policy Action -
+				Field Name : Service Offering
+				Visible = False
+
+		9. Save, Update and Test
+
+
+Question : Between UI Policy and the Data Policy which one is more preferred ?
+
+Answer : UI Policy
+
+
+>> When can Data Policy be used instead of UI Policy ?
+
+Answer : When Some rules are related to Server Side 
+
+
+--> Assignment -
+
+	Number - Read only
+	Short Description - Mandatory
+	Test Plan - Invisible
+
+Once UI Policy is created test it by creating a new change request
+This rule is applicable for the Normal Change 
+
+Solution :
+
+		1. Open the New Change
+
+		2. Right click and go to UI Policies
+
+		3. New UI Policy
+
+		4. Short Description : UI Policy for Normal Change
+			Save
+
+		5. Condition - 
+			Type - Normal
+
+		6. New UI Policy Action - 
+				Field Name : Number
+				Read Only = True
+		
+		7. New UI Policy Action - 
+				Field Name : Short Description
+				Mandatory = True
+
+		8. New UI Policy Action - 
+				Field Name : Test Plan
+				Invisible = False
+
+		9. Save, Update and Test
+
+>> Configuration : Developing a new feature without coding, using OOTB Functionalities
+>> Customization : OOTB Functionalities does not support to build the new feature, we have to develop the feature by writing a piece of code
+
+
+--> Whenever developing a new feature first priorty - Configuration
+	If not possible by Configuration then go for Customization
+
+
+
+--> Business Rule :
+
+When a Business Rule is executed ? 
+A business rule is executed when there is a database transaction
+
+What are the transactions ?
+	- Either Insert a new record or
+	- Update an existing Record
+
+Types of Business Rule - 
+Four types - 
+
+		- Before Business Rule
+		- After Business Rule
+		- Async Business Rule (Important)
+		- Display
+
+
+Use case :
+
+	Any Incident created with 
+		- Category : Hardware
+		- Sub Category : Disk
+	
+	Following fields should be auto filled
+		Assignment group : Hardware
+		Description : Hardware Request 
+		Prioritize State : Set to in Progress
+
+
+Solution : 
+
+	1. Either by opening from the Incident
+		or by Filter Navigator --> Business Rule
+	   The only difference is Table name need not be specifies from Incident
+
+	2. New Business Rule 
+		Name : Hardware Team BR
+	
+	3. Condition : 
+		Category = Hardware
+		Sub Category = Disk
+		Check Update and Insert Box
+	
+	4. Save 
+
+	5. Actions - 
+
+		Set Field values : 
+			Assignment group to Hardware
+			Description to Hardware Request
+			State to In progress
+
+	6. Update
+
+	7. Test by creating a new incident and Category is Hardware and Sub Category is Disk
+
+	8. Submit to see changes
+
+
+The Business Rule is a Server Side Program as it uses a lot of Table
+
+
+--> Assignment
+
+	Any Normal Change created with category = Hardware 
+	Then Following properties should be automatically be filled :
+			- Priority : Critical
+			- Risk : High
+			- Impact - High
+
+Solution :
+
+	1. New Change --> Right click and open --> Business Rule
+
+	2. New Business Rule 
+		Name : Normal Change Hardware
+
+	3. Condition : 
+			Type : Normal 
+			Category : Hardware
+			Check Update and Insert box
+	
+	4. Save
+
+	5. Actions - 
+
+		Set Field Values : 
+				Prioriy to Critical
+				Risk to High
+				Impact to High
+	
+	6. Update 
+
+	7. Create a New Normal Change and give Category as Hardware
+
+	8. Submit to see changes
+
+
+
+
+--> ACL (Access Control List)
+
+	Control access to the Applications
+	Contains 4 operations 
+		- create
+		- Read
+		- Write
+		- Delete
+
+>> Security Admin Role :
+
+	- This is the role required to work with the ACL
+	- We can find it under the Elevated Roles
+	- It is a temporary role, valid until the session is active
+	- ACLs can be modified to control access of users
+
+
+--> Elevate to Security Admin Role
+	Then go to the "acl" under System Security Admin 
+
+Here the Table Name is based on the table roles
+Search *u_aka
+
+--> Excercise :
+
+User with the Role "u_akaemp_user" can
+
+		- Read
+		- Write
+		- Create
+	
+	but restricted to delete any record. Only Admin can delete any reocrd
+
+Solution :
+
+	1. Elevate to Security Admin Role
+	2. Then go to the "ACL" under System Security
+	3. Search for the Table Name with the role of table : *u_akaemp_user
+	4. Choose the Role with Delete Option
+	5. Then Remove the current u_akaemp role 
+	6. Give Role to admin 
+	7. Update and Test by Impersonating any user with the role
+
+
+--> Assignment -
+
+	Create a New Table : EmployeeLeave
+
+	This Application user should be able to 
+		- Read
+		- Create a New Record
+	But cannot Update or Delete any record
+
+
+Solution :
+
+	1. First Create an Update Set and Save and make it current
+	2. Create a New Table with Name : EmployeeLeave
+	3. 
+
+
+
+
+--> Notification :
+It can be 
+	- Email Notification
+	- SMS 
+	- Whatsapp
+	- Phone Call
+
+>> Email Notification 
+	- Based on the condition ServiceNow system will automatically trigger a Notification
+	- Whoever is added in the recepient list all of them will receive a notifiaction
+	- Recepient can be : It can be a Group or Individual
+
+
+--> Filter Navigator -> Notification -> 
+
+
+Use case -
+
+	Create a Notification which will run based on the following condition
+	Condition : Any Incident created with category Hardware, Sub Category Campus
+	Who will receive the notifiaction : Members of the Hardware Team
+
+	Notification Body -
+		Hi <Hardware Team>
+		<Incident #> assigned to your team with 
+		<Priority> needs attention.
+		<Asssigned To>
+
+Regards,
+System Generated email. Don't Reply
+
+
+
+Solution : 
+
+	1. Filter Navigator --> Notifications -> System Notification 
+
+	2. Create New 
+
+	3. Name : Notify Hardware
+	   Table : Incident Table
+	   Category : Uncategorized
+
+	4. When to send :
+		Check Updated and Inserted 
+		Add condition - 
+			Category : Hardware
+			Sub Category : CPU 
+	
+	5. Who will receive 
+		Add Hardware Group
+	
+	6. What it will contain : Copy the Body of the mail provided and replace those in <> with the Field Name
+
+	7. Now Submit, Create an Incident and check Sent in Outbound
+
+
+
+
+
+--> Assignment:
+
+	Create a Notification to send the user id and password to the servicedesk for newly created users.
+
+	condition: any user created for company ACME Australia
+
+	Who will receive the notification: Service Desk
+
+
+Notification Body:
+
+Hi Service Desk,
+
+Please find the details of the newly created user.
+
+user id:
+email id:
+password:*******
+
+note: Reset the password after first login.
+
+Thanks,
+System
+
+
+Solution :
+
+	1. Filter Navigator --> Notifications -> System Notification 
+
+	2. Create New 
+
+	3. Name : New User Created
+	   Table : sys_user
+	   Category : Uncategorized
+
+	4. When to send :
+		Check Updated and Inserted 
+		Add condition - 
+			Company : ACME Australia
+	
+	5. Who will receive 
+		Add Service Desk Group
+	
+	6. What it will contain : Copy the Body of the mail provided and replace those in <> with the Field Name
+
+	7. Now Submit, Create a New User with User Name, Mail Id and Password also check on Reset password
+	   and check Sent in Outbound
+	
+
+
+--> UI Action :
+	This has both Configuration and Customization
+Definition - On click there should be some action in the Backend / Frontend 
+
+
+--> In Employee Application
+	1. Click a Record -> Right Click and UI Actions
+	2. Create New 
+		Name - AkaSave
+	3. Now this button is visible in the Employee Application
+	4. For the Functionality of this button we must add a script in the Backend
+	5. Filter Navigator -> UI Action under System Definitions
+	6. Search for cmdb_ci 
+	7. Choose the Save Option that suits your Requirement
+
+
+
+--> Assignment -
+
+	Create a button on the Incident Form
+	Button Name : Create Problem 
+	on click of that button it should create a problem Ticket
+
+Solution : 
+
+	1. Go to Incident Table -> New -> UI Actions
+	2. Create New 
+		Name - Create a Problem 
+	3. Now add the script from UI Action 
+		Table : Incident[Incident]
+		Name : Create Problem
+	4. Paste the Script and Update 
+	5. Test
