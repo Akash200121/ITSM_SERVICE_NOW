@@ -76,7 +76,7 @@ Future Releases -
 
 History 
 
-This is company was started with a different nae as Glide Software in the year 2006 by Fred Luddy
+This is company was started with a different name as Glide Software in the year 2006 by Fred Luddy
 In 2011 the name was released as Service Now
 In 2019 Bill McDermott joined from SAP as CEO
 High Market Share 
@@ -2991,7 +2991,7 @@ Four types -
 		- Before Business Rule
 		- After Business Rule
 		- Async Business Rule (Important)
-		- Display
+		- On Display
 
 
 Use case :
@@ -3283,3 +3283,569 @@ Solution :
 		Name : Create Problem
 	4. Paste the Script and Update 
 	5. Test
+
+
+09/09/2022
+----------
+
+
+--> When to Script ?
+	When we are unable to develop a new feature / Functionality using the OOTB feature(Configuration) then we should go for the Customization(Scripting)
+
+
+--> Low Code / No Code
+
+	ServiceNow Supports Low Code / No Code mechanism
+
+Meaning : Without writing the code we can develop a few feature or application
+	- More Code means more maintenance cost
+	- Takes More Time to develop, test, maintain
+
+
+--> ServiceNow Scripting
+
+	- ServiceNow uses scripting not programming
+	- Java Script is used to develop a new feature
+
+
+--> What are the Areas to Script in ServiceNow
+	Areas where ServiceNow provides an Editor to write the Script - 
+
+- The Configuration Table from Excel
+
+
+	- Data Policy : Does not have any advanced option of Scripting
+	
+	- UI Policy : Here we have an option "Advanced View in Related Link"
+				  This gives an option of Script
+
+	- Business Rules : We have an option Advanced check box 
+					   After enabling we see an extra Tab "Advanced" in which we will write the Server Side Script
+	
+	- ACL : We have an option Advance check box
+			After enabling we see an extra Window "Script"
+
+	- UI Action : We have an option of Scripting
+
+
+
+- Most Common JS Frameworks
+	- AngularJS
+	- NodeJS
+	- ReactJS
+
+These are JS Libraries
+	- Pre built functions are available in these Libraries
+	- Benifit : Developers do not have to code / develop features from scratch 
+				They can use/re-use the pre defined Libraries
+	
+	- Example : Show a message
+				We have to write a code which will show the message
+				If a predefined function is available, then we can just call it in place of defining that again
+				It saves development time, testing time, and facilitates better application development
+
+
+
+--> Glide Framework
+	It provides predefined library of functions which can be used inside the ServiceNow Application Development
+	The name Glide is due to the name of ServiceNow being Glide Software earlier
+
+--> Glide Framework supports 
+	- Client Side
+	- Server Side Scripting
+
+API : 
+--> Client Side Scripting
+	- Forms
+			- API used : g_form
+	
+	- User 
+			- API used : g_user
+
+
+--> Server Side Scripting
+	- Glide Records
+		- To pull the Records
+
+	- Glide Systems 
+		- To display Records
+
+	- Glide Aggregate
+		- Arithmetic functions
+
+	- Glide Date and Time 
+
+
+>> Client Side Scripting :
+	Running a script(Java script) on the Client Device 
+	Client Device means Desktop, Laptop, Mobile, Tab ...
+	It is usually within a browser
+
+Client means Browser 
+
+>> Why Client Script is used ?
+
+Reason : 
+		 - The Client Script allows the client's browser to take up some of the burdens on the web server while running a web application
+Benifit : 
+		 - Faster and more Responsive web application
+
+>> Functions available under the g_form :
+
+		- Showing an Info message 
+		- To show an error message
+		- Make the field properties related changes 
+				- Mandatory
+				- Read Only
+				- Visibility
+		- Add Choices during the runtime 
+		- Remove Choices during the runtime
+
+
+Use case -
+	To display an info message : "Bank Information is Required" as new record is created
+
+Solution :
+
+	1. Open Employee Application
+	2. Opening any of the record
+	3. Client Scripts Navigation - 
+			- Right Click on top and Choose
+			- Filter Naviagtor --> Client Scripts under System Definition
+	4. Name : Emoloyee_Bankinfo 
+	5. If we want this to be Extended -> choose Inherited 
+	6. UI Type - 
+		This field slection enables the client script execution on the browser of the following devices -
+				 - Desktop
+				 - Mobile / Service Portal
+				 - All
+
+	Types of Client Script - 
+			Four Different Types of Client Script - (Type)	
+				- On Load
+				- On Change
+				- On Submit
+				- On cell Edit
+
+	7. When choosing the On Load the Client Script generates a Set of functions 
+
+
+>> On Load : 
+	- As soon as the Record is loaded the Info Message will be shown
+
+
+- Here in the Scripting 
+		Comments - Whatever inside "//" cannot be executesd
+
+	8. As it is a message going to be displayed on the form 
+			- So we are going to use the API : g_form
+	9. Every statement must be truncated with a semi colon 
+		Example : 
+			g.form.addInfoMessage("Bank Information is Required") ;
+	10. Enter and save the previous line and Test
+
+
+
+--> Using addErrorMessage
+--> Using ClearMessage
+
+
+--> Assignment -
+	Add following choices under the Employee Type :
+		- Office Based
+		- Home Based
+
+Solution :
+
+	1. Open Client Scripts
+
+	2. Create New
+			Name : EmpType
+			Type - OnLoad
+
+	3. Trick here is within brackets 
+		Enter : (<'field name'>,<"backend value">,<"display value">);
+
+	4. Script :
+			g_form.addOption('u_employee_type',"home based","Home Based");
+			g_form.addOption('u_employee_type',"office based","Office Based");
+
+
+
+--> Assignment -
+	Hide the TimeZone GMT On Load of the User Form
+
+Solution :
+
+		1. Open Client Scripts from User Form
+
+		2. Create New	
+				Name : HideGMT
+				Type : OnLoad
+
+		3. Here within Brackets 
+			Enter : (<'field name'>,<"display value">);
+
+		4. Script :
+				g_form.removeOption('time_zone',"GMT");
+
+		
+
+
+
+12/09/2022
+----------
+
+--> On change :
+
+This is the second type of Client Script
+
+-->When is it applied ?
+	Applied when there is a change in one of the field values
+	This is when On Change is executed
+
+
+Here we have a new field name comparing with OnLoad
+
+--> Exercise -
+
+	Any change in category value in problem ticket then the following changes in Service Field 
+	- Clear if there is any value in the service Field
+	- Service field must be mandatory
+	- Show a message that service field is clear 
+
+Solution :
+
+	1. Open Client Script in Problem Ticket
+	2. New Client Script
+		Name - ServiceField
+		Type - Onchange
+	
+	3. Field Name - Category
+
+	4. Script :
+		g_form.clearValue('business_service');
+		g_form.setMandatory('business_service',true);
+		g_form.addInfoMessage("Service Field is clear and Made Mandatory");
+
+	
+
+--> Assignment
+
+	- Create a Table 
+		Table Name : <3 words of your name>Employee
+	- This table should be extended from user table
+
+	- Any change in Language should make following property Changes
+			- Time Zone is mandatory
+			- Password needs reset : should be checked
+		
+
+Solution :
+	
+	1. Create a Table 
+		Name : akaemployees
+		Extends Table : sys_user
+	
+	2. Go to Client Script
+		New :
+		Name - akachange
+		Type - Onchange
+		Field Name : Language
+	
+	3. Script -
+		g_form.setMandatory('time_zone',true);
+    	g_form.setValue('password_needs_reset',"true","true");
+
+	4. Test
+
+
+--> On Submit 
+	- Used when we are submitting a record 
+	- Whenever there is a new record submitted 
+	- An existing record is updated/saved
+	- In these Scenarios we can use the OnSubmit 
+
+>> Benefit :
+
+	We can validate if the record is good to be created / updated 
+	Before accepting the record system will validate
+
+
+--> Excercise -
+
+	Add 2 fields to your form
+	- Join Date
+	- Relieving Date
+
+Scenarios -
+	If the join date is higher than the Relieving date :
+		There should be a Error message : "Invalid Joining Date"
+	
+	If the Joining Date is less than the Relieving Date :
+	There should be a Info message : "Thanks for submitting"
+
+
+While Implementing the usecase we will learn -
+
+	- How to use the Get Function in client script
+	- How to defiine a variable
+	- How to capture the values in the variable
+	- How to use OnSubmit
+	- How to compare 2 values
+	- We will use the operators like >,<,=
+	- How to use the "if" condition
+
+
+
+Solution :
+
+	1. In the application created add two fields - Joining Date and Relieving Date
+	2. Now in Client Script 
+			- Name : akajd
+			- Script
+					var join = g_form.getValue('u_joiningdate');
+					var rel = g_form.getValue('u_relievingdate');
+
+			- To compare the values using if conditions | also use operators
+
+				if(join >= rel)
+				{
+					g_form.addErrorMessage("Invalid Joining Date");
+					return(false);
+				
+				}
+				if(join < rel)
+				{
+					g_form.addInfoMessage("Thanks for Submitting");
+					return(false);
+				}
+	3. Test by giving date and saving 
+
+
+--> Assignment -
+	 
+	 In the App 
+	 	- User Id should not be left blank
+		- Show the info message : "User with email id : xx@gmail.com" created
+	
+
+Solution :
+
+	1. Create a new Client Script
+		Name : akachange
+		Type : OnSubmit
+	
+	2. Script :
+
+	var user = g_form.getValue('user_name');
+	var email = g_form.getValue('email');
+	
+	var msg = user + "has been created with mail id :" +email ;
+	
+	if(user == 0)
+	{
+		g_form.addErrorMessage("User field must not be blank");
+	}
+	
+	g_form.addInfoMessage(msg);
+	
+
+	3. Else the first part is same and second part can be Onload User field is mandatory 
+
+		Script :
+			
+			g_form.setMandatory('user_name',true);
+
+
+	4. Test 
+
+
+--> On Cell Edit -
+
+>> This is used in the List View operations
+
+Example -	
+		In the app we can edit the FirstName, Lastname etc.. from the list view itself
+		This is due to the On Cell Edit in the Background
+
+>> This is not Frequently used
+
+
+
+
+>> Server Side Scripting
+
+	Different Server Side Scripts - In Excel
+
+> When does a Server Side Script run ?
+
+	Whenever there is a database transaction or a call then the server side script is going to run
+
+Areas where Server Side Script is written -
+
+	1. Business Rule
+	2. Script Include
+	3. Background Script
+	4. Fix Script
+	5. workflow
+
+--> There are no Specific Editor for Server Side Script
+
+
+>> Glide APIs for the Server Side Script
+
+	- Glide Records
+	- Glide System
+	- Glide Aggregate
+	- Glide Date and Time 
+
+
+--> Glide Record
+
+	- Must be used in any server side program we are going to write
+	- Without using GR, no Server Side Program can be written
+
+Synatx :
+
+		var gr = new GlideRecord(<Table Name>);
+
+We are gliding Table Name
+
+
+Use case :
+
+	Show all the user records belonging to company ACME Australia or ACME Africa
+
+
+Solution :
+
+	1. In User Table 
+		- Filter the companies using the Condition 
+		- Copy the query and paste in notepad
+	
+	2. Filter Navigator -> Business Rule under System Definitions
+		company=df7d53303710200044e0bfc8bcbe5dac^ORcompany=86c1f3193790200044e0bfc8bcbe5d95
+
+	3. New BR
+		 Check Advanced Box 
+	
+	4. Script - 
+
+		gs - glide system inside which we have different Function 
+
+		var gr = new GlideRecord('sys_user);
+
+
+	5. Now using the query
+		gr.addEncodedQuery('company=df7d53303710200044e0bfc8bcbe5dac^ORcompany=86c1f3193790200044e0bfc8bcbe5d95');
+
+
+	6. To display the Records
+		gr.query();
+
+		while(gr.next())
+		{
+			gs.addInfoMessage('The user id is :'+gr.user_name);
+		}
+
+	7. To run the Code 
+		Paste the Script Code in
+			Background Script in System Definitions
+	   Here we will be able to view all the 30 record
+	
+
+
+-->> Background Script :
+	
+		It is used to run the server side programs
+		We cannot save the code in the Background script
+
+
+--> Assignment -
+
+	Show all the P1 incidents which are In Progress or On Hold in the system 
+
+Solution :
+
+	1. Filter the given condition in Incident Table 
+
+	2. Copy the query -
+			priority=1^state=2^ORstate=3
+		
+	3. New Business Rule 
+		Enable Advanced
+	
+	4. Script - 
+
+		var gr = new GlideRecord('incident');
+    	gr.addEncodedQuery('priority=1^state=2^ORstate=3');
+    	gr.query();
+    
+    while(gr.next())
+        {
+            gs.addInfoMessage("The P1 Incidents in Progress or On Hold are : "+gr.number);
+        }
+	
+
+	4. Copy and Paste the Script in Background Script 
+
+
+
+>>> Add query(); - Most Used Code
+
+	Use : 
+		- This is used to Query the Database(tables) and fetch the records
+
+
+Use Case :
+
+	Show me all the Incidents which are are created with Short Description - "ATF : Test1"
+
+
+Solution : 
+
+	1. Create New Business Rule
+		Name : AkaAdd
+		Check on Advanced Box
+	
+	2. Script :
+
+		var gr = new GlideRecord('incident');
+		gr.addQuery('short_description','ATF : Test1');
+		gr.query();
+
+		while(gr.next)
+		{
+			gs.addInfoMessage('The Incident Number is ' +gr.number);
+
+		}
+	
+	3. Paste in Background Script 
+
+
+
+--> Assignment -
+
+	Display all the incidents which are of priority 1(Critical) or 2(High)
+
+
+Solution :
+
+	1. Create New Business Rule 
+		Name : Aka12
+		Check on Advanced Box
+
+	2. Script :
+		
+		var gr = new GlideRecord('incident');
+		gr.addQuery('priority','1' OR '2');
+		gr.query();
+
+		while(gr.next)
+		{
+			gs.addInfoMessage('The Incident with Priority 1 or 2 is :'+gr.number);
+		}
+
+	3. Paste in Background Script
+
