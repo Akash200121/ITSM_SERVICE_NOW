@@ -1685,7 +1685,7 @@ Asset Management Life Cycle -
 --> Out of Syllabus
 
 	- ITOM 
-		- Discovery Tools - There are different Discovery Tools avaailable
+		- Discovery Tools - There are different Discovery Tools available
 		- These tools can scan the entire network and populate the CMDB
 		- Example of Discovery Tools
 			- ServiceNow Discovery
@@ -3706,7 +3706,7 @@ Areas where Server Side Script is written -
 	- Must be used in any server side program we are going to write
 	- Without using GR, no Server Side Program can be written
 
-Synatx :
+Syntax :
 
 		var gr = new GlideRecord(<Table Name>);
 
@@ -3815,7 +3815,7 @@ Solution :
 		gr.addQuery('short_description','ATF : Test1');
 		gr.query();
 
-		while(gr.next)
+		while(gr.next())
 		{
 			gs.addInfoMessage('The Incident Number is ' +gr.number);
 
@@ -3842,10 +3842,314 @@ Solution :
 		gr.addQuery('priority','1' OR '2');
 		gr.query();
 
-		while(gr.next)
+		while(gr.next())
 		{
 			gs.addInfoMessage('The Incident with Priority 1 or 2 is :'+gr.number);
 		}
 
 	3. Paste in Background Script
+
+
+
+
+13/09/2022
+----------
+
+
+Excercise -
+
+	Show all the incidents which are currently in the status of Resolved or Closed 
+
+
+Solution :
+
+
+
+>> Glide Aggregate - It is used when there is any Arithmetic Function
+
+Syntax :
+		
+		var agg = new GlideAggregate('table_name');
+
+
+Excercise -
+
+	Find the Total Number of records present in the Incident Table
+
+
+Solution - 
+
+	1. New Business rule	
+		Name - Akaga 
+		Table - Any Table
+		Check Insert and Update
+		Check Advanced
+	
+	2. Script - 
+		var agg = new GlideAggregate('incident');
+		agg.addAggregate('COUNT');
+		agg.query();
+		var counter = 0;
+
+		while(agg.next())
+		{
+			counter = agg.getAggregate('COUNT');
+			
+		}
+
+		gs.addInfoMessage("Total Number of incidents present in the System is : " + counter);
+
+	3. We can test it either by pasting in Background Script or when updating a record in the corresponding table
+
+
+
+--> Assignment -
+
+	Show the count of all the users present in the system
+
+
+Solution :
+	
+	1. Create a New Business Rule
+		Name : Akauga
+		Table : Any Table
+		Check and Insert Table
+		Check Advanced
+	
+	2. Script -
+
+		var agg = new GlideAggregate('users');
+		agg.addAggregate('COUNT');
+		agg.query();
+		var counter = 0;
+	
+		while(agg.next())
+		{
+			counter = agg.getAggregate('COUNT');
+			
+		}
+
+		gs.addInfoMessage("Total Number of Users present in the System is : " + counter);
+
+	3. Test 
+
+
+
+>> Glide System - 
+	Variable for Glide System - gs
+	
+
+Excercise -
+	Print the current logged in user's display name and User Id
+
+
+Solution :
+
+	1. New Business Rule -
+		Name : Akangs
+		Table : akaemployees
+		Check Update and Insert
+		Check Advanced
+	
+
+	2. Script -
+
+		var name = gs.getUserDisplayName('active','TRUE');
+		var id = gs.getUserID('active','TRUE');
+	
+		gs.addInfoMessage("The name and Id is : "+name +id);
+
+	
+	(or)
+
+		gs.addInfoMessage("The name and Id is : "+gs.getUserDisplayName() +gs.getUserID());
+	
+
+	3. Test
+
+
+--> Assignment -
+
+	Experiment with Beginning of (Last Mpnth, Last Week, Last Year, Next Month)
+
+Solution :
+
+	gs.addInfoMessage("The beginning of Last Month was :" +gs.beginningOfLastMonth());
+	gs.addInfoMessage("The beginning of Last Week was :" +gs.beginningOfLastWeek());
+	gs.addInfoMessage("The beginning of Last Year was :" +gs.beginningOfLastYear());
+	gs.addInfoMessage("The beginning of Next Month is :" +gs.beginningOfNextMonth());
+	
+
+
+>> Glide Date and Time -
+
+	All the functions related to the Date and Time are available under the Glide Date and Time
+
+Syntax :
+
+		var gdt = new GlideDateTime();
+
+
+Exercise :
+
+	Find Server Date and Time 
+
+Solution :
+
+	1. Create New Business Rule
+		Name : Akagtd
+		Table : Any Table
+		Check Update and Insert
+		Check Advanced
+
+	2. Script :
+
+			var sdt = new GlideDateTime();
+			gs.addInfoMessage(sdt);
+	
+	3. Test
+
+
+Excercise :
+	
+	Passing a vlue directly to the variable and show it
+
+Solution :
+
+	var edt = new GlideDateTime('2022-09-30 12:00:00');
+	gs.addInfoMessage("Last working day of the month :" +edt);
+
+
+--> Assignment -
+	Find the number of days the person has actually worked in the Company
+	That means the difference between the joining date and Relieving date.
+
+
+Solution :
+
+	1.
+
+
+
+
+
+-->> Fix Script
+	To overcome the Limitation of Background Script we use Fix Script
+
+	1. Filter Navigator - Fix Script
+
+	2. Give a Name and Type the Script
+
+	3. Save and Run Fix Script
+
+	4. Check Result in Show Progress Work
+
+
+
+-->> Scipt Include - (Very Important)
+
+What is Script Include ?
+
+	- It is used to store Java Script functions and classes
+	- Script include can be called from any other program (SS / CS)
+	- It is a reusable Component
+
+From where can it be called ?
+
+	- Business Rules
+	- UI Actions
+	- Other Script Includes as well
+	- It can also be called from the Client Side (Glide Ajax)
+
+
+Exercise :
+
+	Find the Addition of Two numbers
+
+Solution :
+
+	1. Filter Navigator -> Script Include under System Definitions
+
+	2. New Script Include - 
+		Name : AkaAdd 
+			This auto generates a class 
+	
+	3. Script - 
+			
+			sum : function(a,b)
+			{
+				var c = a+b;
+				gs.log("The sum of 2 numbers is :" +c);
+				gs.addInfoMessage("The sum of 2 numbers :" +c);
+
+			},
+
+
+Important Note 
+
+	Each Function must be truncated with a "," after the {}
+
+
+	4. Now we can call this from Business Rules -
+			
+			- Create New Business Rule
+			- Script : 
+
+		var a =100;
+		var b = 400;
+
+		var d = new add();
+			d.sum(a,b);
+		
+	
+	5. We can also check the output in System Log
+		Filter Navigator -> System Log -> All 
+
+
+--> Assigment -
+
+	Add the Following function into class Add in the script include -
+			Sub,Mul,Div
+
+
+Solution :
+
+	1. In the existing class create a function 
+		For Sub
+
+		Script :
+
+			sub : function(a,b)
+			{
+				var c = a-b;
+				gs.log("The Subtraction of two numbers is : "+c);
+				gs.addInfoMessage("The Subtraction of two numbers is : "+c);
+			},
+
+	2. For Mul 
+
+		Script :
+
+			mul : function(a,b)
+			{
+				var c = a*b;
+				gs.log("The Multiplication of two numbers is : "+c);
+				gs.addInfoMessage("The Subtraction of two numbers is : "+c);
+			},
+
+	3. For Div 	
+
+		Script :
+
+			div : function(a,b)
+			{
+				var c = a/b;
+				gs.log("The Division of two numbers is : "+c);
+				gs.addInfoMessage("The Division of two numbers is : "+c);
+			},
+
+	
+	4. Test by using the Business Rule
+
+	5. You can check update log for the Output
 
