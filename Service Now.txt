@@ -4121,6 +4121,13 @@ Solution :
 
 			sub : function(a,b)
 			{
+				if(a>b){
+					var c = a-b;
+				}
+				if(a<b){
+					var c =b-a;
+				}
+				
 				var c = a-b;
 				gs.log("The Subtraction of two numbers is : "+c);
 				gs.addInfoMessage("The Subtraction of two numbers is : "+c);
