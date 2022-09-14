@@ -4127,7 +4127,7 @@ Solution :
 				if(a<b){
 					var c =b-a;
 				}
-				
+
 				var c = a-b;
 				gs.log("The Subtraction of two numbers is : "+c);
 				gs.addInfoMessage("The Subtraction of two numbers is : "+c);
@@ -4160,3 +4160,63 @@ Solution :
 
 	5. You can check update log for the Output
 
+
+
+------------------------------------------------------------------------------------------------------------------------------------------------------
+>> Project :
+
+Description : Custom App to claim the Medical Expense from 
+
+Part - 1 -
+
+Mandatory Information :
+						- Employee Name
+						- Employee ID
+						- Primary / Dependent
+
+Additional Information :
+						- How many hours of Hospitalisation
+						- Admission Date
+						- Discharge Date
+						- Amount 
+						- Hospital Name
+					
+Bank Account Details :
+						- Bank Account Number
+						- Account Holder Name[must be Employee Name]
+						- IFSC Code
+						- Branch Name
+
+
+Part - 2
+
+Rule 1 : Admission Date should not be greater than the Discharge Date	
+		If the Admission Date is greater than Discharge Date . Show an Error Message "Invalid Discharge Date / Admission Date"
+
+Rule 2 : Autofill the "How many hours of Hospitalisation" value by calculating the difference between the Discharge Time minus Admission Time
+
+Rule 3 : The Employee ID filled should be Auto filled by referring the employee number Selection
+
+Rule 4 : Account Holder name should be auto filled by taking the information from the selected employee name
+
+Rule 5 : Once the Claim is submitted then a notification should be triggered to the requester with the details of the claim 
+
+
+
+
+Solution :
+
+	1. Create Update Set and Make Current
+
+	2.
+
+
+
+
+
+
+
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
