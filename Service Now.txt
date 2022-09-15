@@ -4220,3 +4220,13 @@ Solution :
 
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+Use Cases to Practise
+
+	- In the application developed - Medical Expense Form
+
+			- Admission Date selected should not be less than the current data
+
+		Idea : Glide Date and Time can be used to get the current date 
+		
