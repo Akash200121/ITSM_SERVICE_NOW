@@ -2627,7 +2627,7 @@ Solution -
 
 
 --> What is the Variable set ?
-	Any Variable Defined under a Variable Set can be use under any Catalog Item
+	Any Variable Defined under a Variable Set can be used under any Catalog Item
 
 
 	- Defining a Varible Set First and then Defining a Variable inside the Variable set
